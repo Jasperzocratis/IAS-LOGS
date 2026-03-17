@@ -1,0 +1,130 @@
+/* Modern Data Table Design */
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background-color: #fff;
+}
+
+.table thead,
+.table thead.table-light {
+    background-color: #198754 !important;
+}
+
+.table thead th,
+.table thead.table-light th {
+    color: #000 !important;
+    font-weight: 600;
+    padding: 15px 12px;
+    text-align: left;
+    border: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table thead th svg,
+.table thead.table-light th svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: middle;
+    fill: #000 !important;
+}
+
+.table tbody tr {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f5f7fa;
+}
+
+.table tbody td {
+    padding: 15px 12px;
+    color: #333;
+    font-size: 14px;
+    border: none;
+    vertical-align: middle;
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Status badges */
+.badge {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Action buttons in table */
+.table .btn-group .btn {
+    margin: 0 2px;
+}
+
+/* Remove default Bootstrap table styling */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd):hover {
+    background-color: #f5f7fa;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f5f7fa;
+}
+
+/* Table container */
+.table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card styling for table wrapper */
+.card {
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 15px 20px;
+}
+
+.card-body {
+    padding: 0;
+}
+
+/* Icon styling in table cells */
+.table tbody td svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: middle;
+    fill: #666;
+}
+
+
+
+

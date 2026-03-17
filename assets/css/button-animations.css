@@ -1,0 +1,45 @@
+/* Transition hover for all buttons in the system */
+button,
+.btn,
+a.btn,
+.page-btn,
+.btn-close,
+.btn-login,
+.export-btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled),
+.btn:hover:not(:disabled),
+a.btn:hover,
+.page-btn:hover:not(:disabled):not(.active):not(.ellipsis),
+.btn-close:hover,
+.btn-login:hover,
+.export-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+button:active:not(:disabled),
+.btn:active:not(:disabled),
+a.btn:active,
+.page-btn:active:not(:disabled),
+.btn-login:active,
+.export-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Keep pagination active/ellipsis and disabled from moving */
+.page-btn.active,
+.page-btn.ellipsis,
+.page-btn:disabled,
+button:disabled,
+.btn:disabled {
+    transform: none;
+}
+
+.page-btn.ellipsis:hover {
+    transform: none;
+    box-shadow: none;
+}

@@ -1,0 +1,174 @@
+Purchase Order / Purchase Request / Notice of Award,,,,,,,,,,
+ID,Date,Date Out,Office,Document Type,Amount,Particulars,Time In,Time Out,Remarks,Status
+73,02/05/2026,02/04/2026,MMOA,Purchase Order,"PHP 8,400.00",Cargoe MPL - Snack to be used,8:33 am,3:55 pm,To Jay,Completed
+72,02/05/2026,-,SP,Purchase Order,"PHP 34,780.00",PLDT INC. - Internet Subscription Expenses,8:33 am,3:25 pm,To Jay,Completed
+48,02/05/2026,-,GSO,Purchase Order,"PHP 13,109.00",Toyota Tagum City - Repair and Maintain of PTV PLSO Vehicle,8:33 am,10:35 am,To GSO,Completed
+42,02/05/2026,-,IT,Purchase Order,"PHP 10,200.00",Panabo Satellite Cable Television - Internet Subscription Expenses,8:33 am,3:33 pm,To BAC,Completed
+41,02/05/2026,-,MHO,Purchase Order,"PHP 8,400.00",Cargoe MPL - Meals and Snacks to be served,8:33 am,3:25 pm,To Jay,Completed
+40,02/05/2026,-,MHO,Purchase Order,"PHP 23,680.00",Cargo MPL - Meals and Snack to be served,8:33 am,3:25 pm,To Jay,Completed
+39,02/05/2026,-,SP,Purchase Order,"PHP 34,788.00",PLDT - Internet Subscription Expenses,8:33 am,3:25 pm,To Jay,Completed
+45,02/05/2026,-,SEF,Purchase Order,"PHP 512,813.00",Notice of Award - Rugged Duo Tailoring,8:20 am,4:33 pm,To Yvette,Completed
+36,02/04/2026,-,MHO,Purchase Order,"PHP 2,426.00",For online video editor subscription on Jan - December,4:38 pm,10:35 am,To Jay,Completed
+38,02/04/2026,-,PNP,Purchase Order,"PHP 300,000.00",Electronic expenses - Davao Light Company,1:21 pm,2:34 pm,to PNP,Completed
+37,02/04/2026,-,GSO,Purchase Order,"PHP 13,109.00",Repair PLSO,8:33 am,1:30 pm,Return to kabahagi,Completed
+19,02/03/2026,-,MHO,Purchase Order,"PHP 94,675.00",For the operation of the facility,11:47 pm,4:00 pm,To Jay,Completed
+257,02/03/2026,-,GSO,Purchase Request,"PHP 278,450.00",PR of Repairs and Maintenance,4:45 pm,5:00 am,PR of Repairs and Maintenance,Completed
+240,02/03/2026,-,MTO,Purchase Request,"PHP 1,200.00",PR of Self-inking Stamp for MTO used,3:20 pm,3:20 pm,to jay,Completed
+253,02/03/2026,-,GSO,Purchase Request,"PHP 17,300.00",PR of Aircon Cleaning of various office,2:57 pm,2:57 pm,to yvette,Completed
+13,02/03/2026,-,MHO,Purchase Order,"PHP 2,928,165.00",Notice of Award - MMJS Pharmacy & Medical Supplies (Drugs & Medicines),2:27 pm,2:55 pm,Return to BAC,Completed
+20,02/03/2026,-,IAS,Purchase Order,"PHP 4,175.56",Online Video Editor Subscription,2:19 pm,4:04 pm,Return to IAS,Completed
+238,02/03/2026,-,MHO,Purchase Request,"PHP 20,000.00",PR of Meals for the client in Paanakan,1:40 pm,3:40 pm,to yvette,Completed
+239,02/03/2026,-,GSO,Purchase Request,"PHP 1,905.00",PR of Meals for Arta Personnel,1:27 pm,1:27 pm,Return to GSO,Completed
+252,02/03/2026,-,TO,Purchase Request,"PHP 3,000.00",PR of Office used,12:42 pm,12:56 pm,to TO,Completed
+251,02/03/2026,-,IO,Purchase Request,"PHP 4,200.00",PR of Other supplies office used,12:42 pm,12:56 pm,to IMO,Completed
+250,02/03/2026,-,IT,Purchase Request,"PHP 3,000.00",PR of Office used,12:42 pm,12:56 pm,To IT,Completed
+249,02/03/2026,-,GSO,Purchase Request,"PHP 16,000.00",PR of Repairs and Maintenance,12:42 pm,12:56 pm,to yvette,Completed
+248,02/03/2026,-,GSO,Purchase Request,"PHP 200.00",PR of Motorcycle repair,12:42 pm,12:56 pm,to yvette,Completed
+247,02/03/2026,-,GAD,Purchase Request,"PHP 172,200.00",PR of Other supplies and materials,12:42 pm,12:56 pm,to yvette,Completed
+246,02/03/2026,-,GAD,Purchase Request,"PHP 8,315.00",PR of Office supplies for office use,12:42 pm,12:56 pm,to yvette,Completed
+245,02/03/2026,-,IT,Purchase Request,"PHP 4,200.00",PR of Water Installation and Consumption,12:42 pm,12:56 pm,to yvette,Completed
+244,02/03/2026,-,MHO,Purchase Request,"PHP 20,000.00",PR of Meals for clients in Paanakan for Jan-Dec 2026,12:42 pm,12:56 pm,to yvette,Completed
+12,02/03/2026,-,MSWDO,Purchase Order,"PHP 537,000.00",Well-Milled Rice for Funeraria sa Masa,11:47 am,2:18 pm,To Jay,Completed
+241,02/03/2026,-,GSO,Purchase Request,"PHP 242,640.00",PR of Payroll System Rental,11:32 am,12:22 am,Return to GSO,Completed
+254,02/03/2026,-,IO,Purchase Request,"PHP 80,110.00",PR of Office use,10:56 am,10:52 am,to yvette,Completed
+243,02/03/2026,-,OMA,Purchase Request,"PHP 89,600.00",PR of Rent Expenses for FMIS on Jan-August 2026,10:15 am,12:33 pm,TO JAY,Completed
+242,02/03/2026,-,OMA,Purchase Request,"PHP 33,600.00",PR of Expenses for BRGY NGA's System on Jan-April,10:15 am,12:27 am,TO JAY,Completed
+11,02/03/2026,-,GSO,Purchase Order,"PHP 242,640.00","Rent Expense (HRIS, PAYROLL) OPCR/IPCR",9:48 am,12:17 pm,To Sammy,Completed
+256,02/03/2026,-,DILG,Purchase Request,"PHP 29,000.00",PR of Meals and snack,9:47 am,10:13 am,to yvette,Completed
+255,02/03/2026,-,GSO,Purchase Request,"PHP 200.00",PR of Motorcycle repair,9:01 am,9:25 am,Return to GSO,Completed
+18,02/03/2026,-,GAD,Purchase Order,"PHP 124,800.00",Notice of Award - Cargoe MPC(Meals&Snacks),2:27 am,2:55 am,To Yvette,Completed
+17,02/03/2026,-,MHO,Purchase Order,"PHP 249,250.00",Ã€yromed DrugMart,2:27 am,2:55 am,Return to BAC,Completed
+16,02/03/2026,-,SBO,Purchase Order,"PHP 281,430.00",Cargoe MPC(Meals & Snacls),2:27 am,2:55 am,Return to BAC,Completed
+15,02/03/2026,-,SEF,Purchase Order,"PHP 512,813.00",Rugged Duo Tailoring - Uniform of Athletes Coaches,2:27 am,2:55 am,Return to BAC,Completed
+14,02/03/2026,-,SBSEC,Purchase Order,"PHP 288,716.00",Notice Of Award - Tagum Gasoline Distribution Center Corp.,2:27 am,2:55 am,Return to BAC,Completed
+237,02/02/2026,-,MPDO,Purchase Request,"PHP 17,450.00",PR of Snacks for MCDC meeting on Jan - December 2026,4:24 pm,5:10 pm,to yvette,Completed
+236,02/02/2026,-,MPDO,Purchase Request,"PHP 29,200.00",PR of Meals & Snacks for CDP Formulation on Feb. 2026,4:24 pm,5:10 pm,to yvette,Completed
+2,02/02/2026,-,MHO,Notice of Award,N/A,"Drugmart (Med, Dental & Lab Supplied) - P249, 250.00",4:05 pm,9:14 pm,To Yvette,Completed
+233,02/02/2026,-,OMA,Purchase Request,"PHP 4,500.00",PR of Drinking Water,1:40 pm,3:40 pm,to yvette,Completed
+234,02/02/2026,-,GSO,Purchase Request,"PHP 1,430.00","PR of R/M - BFP Fire Truck , D2W 817 & PTV 1",1:27 pm,3:20 pm,to jay,Completed
+232,02/02/2026,-,MHO,Purchase Request,"PHP 15,500.00",PR of snacks and digital rental exam on feb 13 capability training for frontline comm - worker,1:05 pm,3:48 pm,to yvette,Completed
+231,02/02/2026,-,PNP,Purchase Request,"PHP 11,486.00",PR of R/M - PNP Avanza,11:06 am,3:48 pm,to yvette,Completed
+230,02/02/2026,-,MDRRMO,Purchase Request,"PHP 76,800.00",PR of meals and snacks for IEC campaign,10:43 am,3:48 pm,to yvette,Completed
+229,02/02/2026,-,GSO,Purchase Request,"PHP 1,323,090.00",PR of filling cabinet of various offices,10:43 am,12:54 am,to yvette,Completed
+228,02/02/2026,-,GSO,Purchase Request,"PHP 1,868,400.00",PR of aircon of various offices,10:43 am,12:54 am,to yvette,Completed
+227,02/02/2026,02/02/2026,MDRRMO,Purchase Request,"PHP 96,000.00",PR of meals and snack for ICS & Emergency operation,10:43 am,12:54 am,to yvette,Completed
+4,02/02/2026,-,MO,Purchase Order,"PHP 3,710.00",Emission Test for LGU Vehicles,10:17 am,12:54 am,To Jay,Completed
+3,02/02/2026,-,MO,Purchase Order,"PHP 2,682.50",Meals for Mayors Office Visitor,10:17 am,12:54 pm,To Jay,Completed
+235,02/02/2026,02/02/2026,GSO,Purchase Request,"PHP 1,905.00",PR of Meals for ARTA Personnel,1:27 am,3:35 pm,return to GSO,Completed
+225,01/30/2026,02/02/2026,MDRRMO,Purchase Request,"PHP 96,000.00",pr of meals and snacks for ICS emergency operartion,2:53 pm,9:28 am,Return to MDRRMO,Completed
+226,01/30/2026,02/02/2026,MDRRMO,Purchase Request,"PHP 76,800.00",For info educ&comm company,2:53 am,9:28 am,Return to MDRRMO,Completed
+338,02/12/2023,02/13/2026,MSWDO,Purchase Order,"PHP 7,680.00",CARGOE MPC-Payment of Roasted Pig for hosting of DNK may K (Davao del Norte Kapisanan ng may Kapansanan) monthly meeting,2:27 am,1:46 am,to jay,Completed
+
+Other Document,,,,,,,,,,
+ID,Date,Date Out,Office,Document Type,Particulars,Time In,Time Out,Remarks,Status
+11,02/02/2026,-,MEO,Letter to Engr. Orville F. Cabanilla,For Final Inspection Prog. Bldg. Phase on Feb 5 2026,2:23 pm,3:48 pm,To Yvette,Completed
+13,02/02/2026,-,MSWDO,Certification of MR. Dwight Angelo Y. Yuen & MS. Maylyn A. Loyloy,Registered social workness employed under LGU,1:31 pm,4:00 pm,MSWDO,Completed
+9,02/02/2026,-,IAS,CAFOA,RATA - P15300.00,12:23 pm,1:24 pm,To HRMO,Completed
+8,02/02/2026,-,MCR,MTOP,Erickson C. Absin,10:29 am,12:54 pm,To Yvette,Completed
+6,02/02/2026,-,IAS,CAFOA,"PERA - 4,000.00",9:05 am,9:25 am,To MBO,Completed
+5,02/02/2026,-,IAS,CAFOA,"Clothing Allow - P14,000.00",9:05 am,9:25 am,To MBO,Completed
+4,02/02/2026,-,IAS,CAFOA,"Telephone Mobile - P3,500.00",9:05 am,9:25 am,To MBO,Completed
+12,02/02/2026,-,MEO,Letter to Engr. Jones D. Lindo,Improvement of fara to market Road on Feb 5,2:23 am,3:48 am,To Yvette,Completed
+
+Additional Document Types,,,,,,,,,,
+ID,Date,Date Out,Office,Document Type,Particulars,Time In,Time Out,Remarks,Status
+525,02/16/2026,02/16/2026,MEO,Contract Of Service,"WILMAR H. MANANITA - PRK 1, GUDALUPE, CARMEN, CARMEN - FEBRUARY 1-28, 2026",2:01 pm,4:40 pm,TO YVETTE,Completed
+524,02/16/2026,02/16/2026,MEO,Contract Of Service,RENE M. VIRTUDAZO CARMEN - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+523,02/16/2026,02/16/2026,MEO,Contract Of Service,JOSEPH G. GALABIN - PRK 8 ISING CARMEN - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+522,02/16/2026,02/16/2026,MEO,Contract Of Service,ALBERT A. JACOSALEM - PRK 2A SALVACION PANABO CITY - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+521,02/16/2026,02/16/2026,MEO,Contract Of Service,JEFFREY P. SABIO - PRK 16A ISING CARMEN - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+520,02/16/2026,02/16/2026,MEO,Contract Of Service,PRIMITIVO M. CASTRO - PRK 18 ISING CARMEN - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+519,02/16/2026,02/16/2026,MEO,Contract Of Service,EREXPEDITO QUINONES - PRK 8 ISING CARMEN - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+518,02/16/2026,02/16/2026,MEO,Contract Of Service,MAXZALDY BATTULAYAN - PRK 20 ISING CARMEN - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+517,02/16/2026,02/16/2026,MEO,Contract Of Service,RANILO S. NAVARRO - PRK 4 ASUNCION CARMEN - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+516,02/16/2026,02/16/2026,MEO,Contract Of Service,KENNETH JHON B. SILLACAY - PRK 1 TUGANAY CARMEN - FEBRUARY 1-28 2026,2:01 pm,4:40 pm,TO YVETTE,Completed
+515,02/16/2026,02/16/2026,MEO,Contract Of Service,JULIE C. DIOLA - PRK 1A CEBULANO CARMEN,2:01 pm,4:36 pm,TO YVETTE,Completed
+514,02/16/2026,02/16/2026,MEO,Contract Of Service,ROBERTO C. BULAN - PRK CORAZON LA PAZ CARMEN,2:01 pm,4:36 pm,TO YVETTE,Completed
+513,02/16/2026,02/16/2026,MEO,Contract Of Service,CHARLIE A. LEDESMA - PRK 9 NEW CAMILING CARMEN,2:01 pm,4:36 pm,TO YVETTE,Completed
+512,02/16/2026,02/16/2026,MEO,Contract Of Service,MICHAELANGELO A. CUTAY - PRK 7 ISING CARMEN,2:01 pm,4:36 pm,TO YVETTE,Completed
+511,02/16/2026,02/16/2026,MEO,Contract Of Service,RODMAR D. MALACAD - PRK 10 NEW CAMILING CARMEN,2:01 pm,4:36 pm,TO YVETTE,Completed
+510,02/16/2026,02/16/2026,MEO,Contract Of Service,LOWELL S. BULAN - PRK CORAZON LA PAZ CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+509,02/16/2026,02/16/2026,MEO,Contract Of Service,JOVITO C. LUAGE - PRK 22 ISING CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+508,02/16/2026,02/16/2026,MEO,Contract Of Service,FREDERICK E. CERENO - PRK5 MABUHAY CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+507,02/16/2026,02/16/2026,MEO,Contract Of Service,MICHAEL E. MALINAO - PRK 4 TABA CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+506,02/16/2026,02/16/2026,MEO,Contract Of Service,NICOLAS D. LORETO - PRK 20 ISING CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+505,02/16/2026,02/16/2026,MEO,Contract Of Service,ROMEO P. VISMANOS - PRK 9 ISING CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+504,02/16/2026,02/16/2026,MEO,Contract Of Service,DANIEL C. BANQUERIGO - PRK 6 ISING CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+503,02/16/2026,02/16/2026,MEO,Contract Of Service,ERNIE D. DAMAOLAO - PRK 6 ICARE ISING CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+502,02/16/2026,02/16/2026,MEO,Contract Of Service,CLEMENTE G. CABUYADAO - PRK 1 TUGANAY CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+501,02/16/2026,02/16/2026,MEO,Contract Of Service,MARK ANGELO S. FURIA,2:01 pm,4:25 pm,TO YVETTE,Completed
+500,02/16/2026,02/16/2026,MEO,Contract Of Service,MARK ANGELO S. FURIA - MAGSAYSAY CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+499,02/16/2026,02/16/2026,MEO,Contract Of Service,BENJIE EARN M. PAUTAN - PRK6 ISING CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+498,02/16/2026,02/16/2026,MEO,Contract Of Service,JOHN ED B. MAGBANUA - PRK 12 ISING CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+497,02/16/2026,02/16/2026,MEO,Contract Of Service,JOHN ED B. MAGBANUA - PRK 12 ISING CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+496,02/16/2026,02/16/2026,MEO,Contract Of Service,WELFREDO P. ABUBO - ANIBONGAN CARMEN,2:01 pm,4:25 pm,TO YVETTE,Completed
+455,02/16/2026,02/16/2026,MAYOR'S OFFICE,Administrative Order,"A.O-Granting Monthly Communication Allowance in the Amount of 2,000 to the following school heads of the Public Elementary & Secondary schools for school operations",1:55 pm,3:19 pm,TO YVETTE,Completed
+454,02/16/2026,02/16/2026,MAYOR'S OFFICE,Administrative Order,"A.O-Granting Allowance to all School Heads of the Public Elem. & Secondary Schools intended for School Operation in the amount of 1,000 each",1:55 pm,3:19 pm,TO YVETTE,Completed
+452,02/16/2026,02/16/2026,MTO,Business Permit,JUNRY CAINONG LANOY,1:44 pm,2:57 pm,TO JAY,Completed
+453,02/16/2026,02/16/2026,MTO,Business Permit,"ALEJANDRO ARCILLA TAER JR. - THALIA'S SARI SARI STORE",1:33 pm,2:57 pm,TO JAY,Completed
+451,02/16/2026,02/16/2026,MTO,Business Permit,CHRISTINE FAITH JIMENEZ CORVERA - RGLE SAND AND GRAVEL QUARRYING,1:33 pm,2:50 pm,TO JAY - RETURN TO MTO,Completed
+495,02/16/2026,02/16/2026,MENRO,Contract Of Service,DARYL BERTOS - TUGANAY CARMEN,10:58 am,4:25 pm,TO YVETTE,Completed
+492,02/16/2026,02/16/2026,MABUHAY/WATCHMAN,Contract Of Service,SHEENA MAE M. KINES - MABUHAY CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+491,02/16/2026,02/16/2026,MABUHAY/WATCHMAN,Contract Of Service,RICO N. TIBAY - MABUHAY CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+490,02/16/2026,02/16/2026,RCO,Contract Of Service,VIA MAE E. LAVINA - PRK 4 TABA CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+489,02/16/2026,02/16/2026,PNP,Contract Of Service,MERCY C. BUTI - P-3B STO NINO CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+488,02/16/2026,02/16/2026,PNP,Contract Of Service,MA ANNA LOU U. CATUNGAL - PRK 3A TUBOD CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+487,02/16/2026,02/16/2026,PNP,Contract Of Service,RAUL O. BERIDO - PRK 9 SADPUDON ISING CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+486,02/16/2026,02/16/2026,PNP,Contract Of Service,DANILO R. DELOS REYES,10:58 am,4:03 pm,TO YVETTE,Completed
+485,02/16/2026,02/16/2026,PNP,Contract Of Service,JAIME A. INTONG SR.,10:58 am,4:03 pm,TO YVETTE,Completed
+484,02/16/2026,02/16/2026,PNP,Contract Of Service,NESTLE G. NAMIS,10:58 am,4:03 pm,TO YVETTE,Completed
+483,02/16/2026,02/16/2026,PNP,Contract Of Service,RUDY B. VASQUEZ,10:58 am,4:03 pm,TO YVETTE,Completed
+482,02/16/2026,02/16/2026,MSWDO,Contract Of Service,LIMUEL B. LUMANGOD - PRK6A MAGSAYSAY CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+481,02/16/2026,02/16/2026,MSWDO,Contract Of Service,EDMOND C. CAGAS,10:58 am,4:03 pm,TO YVETTE,Completed
+480,02/16/2026,02/16/2026,MSWDO,Contract Of Service,AILEEN A. GALBAN,10:58 am,4:03 pm,TO YVETTE,Completed
+479,02/16/2026,02/16/2026,MSWDO,Contract Of Service,JOEWIE A. UMBAO,10:58 am,4:03 pm,TO YVETTE,Completed
+478,02/16/2026,02/16/2026,MSWDO,Contract Of Service,JAS M. MADELO,10:58 am,4:03 pm,TO YVETTE,Completed
+477,02/16/2026,02/16/2026,MSWDO,Contract Of Service,JERRY P. PASTOLERO - ORK7A ALEJAL CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+476,02/16/2026,02/16/2026,MSWDO,Contract Of Service,FREDDIE P. TANGARO - PRK 5C TUBOD CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+475,02/16/2026,02/16/2026,MSWDO,Contract Of Service,RICKY T. CENIZA,10:58 am,4:03 pm,TO YVETTE,Completed
+474,02/16/2026,02/16/2026,MSWDO,Contract Of Service,ROT A. ROSALES - PRK 5 MABUHAY CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+473,02/16/2026,02/16/2026,MSWDO,Contract Of Service,ROUVEL R. TINDOY - PRK 1 ASUNCION CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+472,02/16/2026,02/16/2026,MSWDO,Contract Of Service,MICHAEL RYAN LADIONA - PRK 3B STO NINO CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+471,02/16/2026,02/16/2026,MSWDO,Contract Of Service,MANUEL M. INTONG PRK 5 ALEJAL CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+470,02/16/2026,02/16/2026,MSWDO,Contract Of Service,EDWIN C. CAGAS - PRK 2 ANIBONGAN CARMEN,10:58 am,4:03 pm,TO YVETTE,Completed
+469,02/16/2026,02/16/2026,MSWDO,Contract Of Service,KRISTINE JEAN H. TUBO - CARMEN DAVAO DEL NORTE,10:58 am,4:03 pm,TO YVETTE,Completed
+468,02/16/2026,02/16/2026,MSWDO,Contract Of Service,CATHERINE D. LABRADOR,10:58 am,3:39 pm,TO YVETTE,Completed
+467,02/16/2026,02/16/2026,MSWDO,Contract Of Service,ALBERT ACEBIDO - PRK 3 MANGALCAL CARMEN,10:58 am,3:39 pm,TO YVETTE,Completed
+466,02/16/2026,02/16/2026,MSWDO,Contract Of Service,JOSELITO M. VILLANUEVA SR - PRK 8 MALIAVILLE ISING,10:58 am,3:39 pm,TO YVETTE,Completed
+465,02/16/2026,02/16/2026,MSWDO,Contract Of Service,SHARON FAITH G. ORING - PRK 13 ISING CARMEN,10:58 am,3:39 pm,TO HRMO,Completed
+464,02/16/2026,02/16/2026,MSWDO,Contract Of Service,OSCAR S. BERIOSO - PRK 2 MANGALCAL CARMEN,10:58 am,3:39 pm,TO HRMO,Completed
+463,02/16/2026,02/16/2026,HRMO,Contract Of Service,RAPHY GEI L. METANTE - PRK 5A TUBOD CARMEN,10:58 am,3:39 pm,TO HRMO,Completed
+462,02/16/2026,02/16/2026,HRMO,Contract Of Service,ADOMIS A. SANGCO,10:58 am,3:39 pm,TO HRMO,Completed
+461,02/16/2026,02/16/2026,MSWDO,Contract Of Service,FERNANDO S. AURE,10:58 am,3:39 pm,TO HRMO,Completed
+460,02/16/2026,02/16/2026,HRMO,Contract Of Service,MEJHON G. PELAEZ,10:58 am,3:39 pm,TO HRMO,Completed
+459,02/16/2026,02/16/2026,HRMO,Contract Of Service,RONNEL W. NAVASQUEZ,10:58 am,3:39 pm,TO HRMO,Completed
+458,02/16/2026,-,HRMO,Contract Of Service,ROMULO G. BANTE - PRK6 ISING CARMEN,10:58 am,3:39 pm,TO HRMO,Completed
+457,02/16/2026,-,HRMO,Contract Of Service,RENANTE H. GALBAN,10:58 am,3:39 pm,TO HRMO,Completed
+456,02/16/2026,-,HRMO,Contract Of Service,REYNA A. BARATAS - PRK 9B ALEJAL CARMEN DDN,10:58 am,3:39 pm,TO HRMO,Completed
+441,02/16/2026,-,MSWDO,Memorandum of Agreement,General Memorandum of Agreement Between DSWD filled office 11 and LGU,10:00 am,10:02 am,Return to MSWDO,Completed
+440,02/16/2026,02/16/2026,MTO,Business Permit,SHANIA MAE SURELA RETALLA,9:33 am,9:53 am,TO JAY,Completed
+439,02/16/2026,02/16/2026,MTO,Business Permit,"DOLE PHILIPPINES INC. / DOLE PHILIPPINES, INC. / PUROK 5 TUBOD, CARMEN, DAVAO DEL NORTE",8:52 am,9:20 am,TO JAY,Completed
+438,02/16/2026,02/16/2026,MTO,Business Permit,"ESTHER GAMANA PRADO / ESTHER STEEL FABRICATION / PUROK 1A SANTO NINO, CARMEN, DAVAO DEL NORTER",8:52 am,9:20 am,TO JAY,Completed
+450,02/16/2026,02/16/2026,MTO,Business Permit,ARL GRAVEL AND SAND TRADING - ROGELIO LACNO,1:33 am,2:41 am,TO JAY - RETURN TO MTO,Completed
+372,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 205-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+371,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 204-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+370,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 203-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+369,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 202-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+368,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 201-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+367,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 200-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+366,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 199-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+365,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 198-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+364,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 197-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+363,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 196-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+362,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 195-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+361,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 194-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+360,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 193-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+359,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 192-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+358,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 191-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+357,02/13/2026,02/13/2026,MBO,Allotment Release Order,ARO NO. 190-S-2026,10:41 am,4:30 am,TO YVETTE,Completed
+301,02/13/2026,02/13/2026,MTO,Business Permit,"Caily's Billard Hall, Caily's Sari-Sari Store-Rachell Ann Rocacurva Hernando",9:14 am,10:03 am,To Jay,Completed
+337,02/13/2026,02/13/2026,HRMO,Contract Of Service,DEMSON M. DEGOLLADO - FEBRUARY 1-28 2026,9:08 am,10:45 am,TO YVETTE,Completed
+336,02/13/2026,02/13/2026,HRMO,Contract Of Service,ANGELITO F. AGUALAN - FEBRUARY 1-28 2026,9:08 am,10:45 am,TO YVETTE,Completed
+335,02/13/2026,02/13/2026,HRMO,Contract Of Service,ANGEL D. AMOYEN - FEBRUARY 1-28 2026,9:08 am,10:45 am,TO YVETTE,Completed
+334,02/13/2026,02/13/2026,HRMO,Contract Of Service,ZALDY F. LOYLOY - FEBRUARY 1-28 2026,9:08 am,10:45 am,TO YVETTE,Completed
+333,02/13/2026,02/13/2026,HRMO,Contract Of Service,ARNOLD M. TUBIDA - FEBRUARY 1-28 2026,9:08 am,10:45 am,TO YVETTE,Completed

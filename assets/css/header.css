@@ -1,0 +1,32 @@
+/* Header: green background, white text - overrides Bootstrap */
+header {
+    background: #198754 !important;
+    background-image: none !important;
+}
+header,
+header *,
+header .nav-link,
+header .navbar-nav .nav-link,
+header a,
+header button,
+header h4,
+header small,
+header span {
+    color: #fff !important;
+}
+header .nav-link:hover,
+header .navbar-nav .nav-link:hover {
+    color: #fff !important;
+    background: rgba(255,255,255,0.15) !important;
+}
+
+/* Dropdown menu: black text so it's visible on light background */
+header .dropdown-menu,
+header .dropdown-menu .dropdown-item,
+header .dropdown-menu .dropdown-item i {
+    color: #000 !important;
+}
+header .dropdown-menu .dropdown-item:hover {
+    color: #000 !important;
+    background: #f8f9fa;
+}
