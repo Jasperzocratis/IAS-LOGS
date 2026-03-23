@@ -307,6 +307,7 @@ $sql .= " ORDER BY archived_at DESC, date_received DESC";
 
 $archived_documents = [];
 $offices = [];
+$archive_tablespace_error = false;
 try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
@@ -316,10 +317,15 @@ try {
     $offices = $stmt->fetchAll(PDO::FETCH_COLUMN);
 } catch (PDOException $e) {
     $msg = $e->getMessage();
-    if (strpos($msg, 'Tablespace is missing') !== false || strpos($msg, 'error 194') !== false || $e->getCode() == '1030') {
-        $error = "The archive table could not be loaded (missing tablespace). In phpMyAdmin, run: DROP TABLE IF EXISTS archive_documents; then re-create the table from your backup SQL (database/ias_database.sql), or use Operations to repair the database.";
+    $is_tablespace = (stripos($msg, 'Tablespace is missing') !== false
+        || stripos($msg, 'missing tablespace') !== false
+        || stripos($msg, 'error 194') !== false
+        || $e->getCode() == '1030');
+    if ($is_tablespace) {
+        $error = 'The archive table could not be loaded (missing tablespace). You can repair it from this system.';
+        $archive_tablespace_error = true;
     } else {
-        $error = "Error loading archived documents: " . $msg;
+        $error = 'Error loading archived documents: ' . $msg;
     }
 }
 ?>
@@ -356,8 +362,9 @@ try {
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1>Archive Documents</h1>
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                    <h1 class="mb-0">Archive Documents</h1>
+                    <a href="repair_archive.php" class="btn" style="background: #D4AF37; color: #000; border: 2px solid #B8941F; font-weight: 600;">Proceed to repair archive table</a>
                 </div>
 
                 <!-- Success/Error Messages -->
@@ -376,7 +383,13 @@ try {
                 <?php endif; ?>
 
                 <?php if (isset($error)): ?>
-                    <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
+                    <div class="alert alert-danger">
+                        <p class="mb-2"><?php echo htmlspecialchars($error); ?></p>
+                        <?php if (!empty($archive_tablespace_error)): ?>
+                            <p class="mb-3 small">This will drop and recreate an empty <code>archive_documents</code> table (existing archived rows are removed unless you restore from backup).</p>
+                            <a href="repair_archive.php" class="btn" style="background: #D4AF37; color: #000; border: 2px solid #B8941F; font-weight: 600;">Proceed to repair archive table</a>
+                        <?php endif; ?>
+                    </div>
                 <?php endif; ?>
 
                 <!-- Filter Section -->

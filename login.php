@@ -265,11 +265,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 
                 <button type="submit" class="btn-login">Login</button>
+                <div style="margin-top: 12px; text-align: center;">
+                    <a href="#" onclick="prefillAdmin(event)" style="color: #B8941F; font-weight: 600; text-decoration: none;">Login as Admin?</a>
+                </div>
             </form>
         </div>
     </div>
 
     <script>
+        function prefillAdmin(e) {
+            if (e) e.preventDefault();
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            if (usernameInput) usernameInput.value = 'admin';
+            if (passwordInput) {
+                passwordInput.focus();
+                passwordInput.select();
+            }
+        }
+
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const eyeIcon = document.getElementById('eye-icon');

@@ -12,6 +12,7 @@ if (!function_exists('getUserFullName')) {
 
 // Check if user is logged in
 $is_logged_in = isLoggedIn();
+$is_admin = function_exists('isAdmin') ? isAdmin() : false;
 
 $current_page = basename($_SERVER['PHP_SELF']);
 $script_path = $_SERVER['PHP_SELF'];
@@ -49,6 +50,7 @@ if ($is_documents_page) {
                        style="color: #fff; font-weight: 500; padding: 8px 15px; border-radius: 5px; <?php echo ($current_page == 'index.php' && !$is_documents_page) ? 'background: rgba(212, 175, 55, 0.2);' : ''; ?>">
                         Home
                     </a>
+                    <?php if (!$is_admin): ?>
                     <a href="<?php echo $base_path; ?>dashboard.php" 
                        class="nav-link me-4 <?php echo ($current_page == 'dashboard.php') ? 'active' : ''; ?>" 
                        style="color: #fff; font-weight: 500; padding: 8px 15px; border-radius: 5px; <?php echo ($current_page == 'dashboard.php') ? 'background: rgba(212, 175, 55, 0.2);' : ''; ?>">
@@ -59,6 +61,7 @@ if ($is_documents_page) {
                        style="color: #fff; font-weight: 500; padding: 8px 15px; border-radius: 5px; <?php echo $is_documents_page ? 'background: rgba(212, 175, 55, 0.2);' : ''; ?>">
                         Document Logbook
                     </a>
+                    <?php endif; ?>
                     <a href="<?php echo $base_path; ?>reporting.php" 
                        class="nav-link me-4 <?php echo ($current_page == 'reporting.php') ? 'active' : ''; ?>" 
                        style="color: #fff; font-weight: 500; padding: 8px 15px; border-radius: 5px; <?php echo ($current_page == 'reporting.php') ? 'background: rgba(212, 175, 55, 0.2);' : ''; ?>">

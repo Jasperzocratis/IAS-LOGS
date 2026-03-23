@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2026 at 11:28 AM
+-- Generation Time: Mar 18, 2026 at 10:51 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `audit_log_system`
 --
-CREATE DATABASE IF NOT EXISTS `audit_log_system` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `audit_log_system`;
+DROP DATABASE IF EXISTS `audit_log_system_ias_logs`;
+CREATE DATABASE `audit_log_system_ias_logs` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `audit_log_system_ias_logs`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +30,7 @@ USE `audit_log_system`;
 -- Table structure for table `archive_documents`
 --
 
-CREATE TABLE IF NOT EXISTS `archive_documents` (
+CREATE TABLE `archive_documents` (
   `id` int(11) NOT NULL,
   `original_id` int(11) NOT NULL,
   `date_received` date NOT NULL,
@@ -44,12 +45,7 @@ CREATE TABLE IF NOT EXISTS `archive_documents` (
   `amount` decimal(10,2) DEFAULT NULL,
   `archived_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_date_received` (`date_received`),
-  KEY `idx_document_type` (`document_type`),
-  KEY `idx_office` (`office`),
-  KEY `idx_archived_at` (`archived_at`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -58,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `archive_documents` (
 -- Table structure for table `deleted_documents`
 --
 
-CREATE TABLE IF NOT EXISTS `deleted_documents` (
+CREATE TABLE `deleted_documents` (
   `id` int(11) NOT NULL,
   `original_id` int(11) NOT NULL,
   `archive_id` int(11) DEFAULT NULL,
@@ -75,19 +71,14 @@ CREATE TABLE IF NOT EXISTS `deleted_documents` (
   `deleted_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `archived_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_date_received` (`date_received`),
-  KEY `idx_document_type` (`document_type`),
-  KEY `idx_office` (`office`),
-  KEY `idx_deleted_at` (`deleted_at`)
+  `archived_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `deleted_documents`
 --
 
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (1, 59, 1206, '0000-00-00', '2026-02-09', '-', 'MEO', '00:00:00', NULL, '00:00:00', 'PHP 1,121.00', NULL, NULL, '2026-02-18 01:43:22', '2026-02-18 01:35:43', '2026-02-18 01:35:43', '2026-02-18 01:43:00'),
 (2, 58, 1207, '0000-00-00', '2026-02-09', '2026-02-10', 'MEO', '00:00:00', NULL, '00:00:00', 'PHP 1,267,560.00', NULL, NULL, '2026-02-18 01:43:22', '2026-02-18 01:35:43', '2026-02-18 01:35:43', '2026-02-18 01:43:00'),
 (3, 57, 1208, '0000-00-00', '2026-02-09', '2026-02-10', 'MHO', '00:00:00', NULL, '00:00:00', 'PHP 49,531.00', NULL, NULL, '2026-02-18 01:43:22', '2026-02-18 01:35:43', '2026-02-18 01:35:43', '2026-02-18 01:43:00'),
@@ -312,7 +303,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (222, 179, 1086, '0000-00-00', '2026-02-12', '-', 'SBO', '00:00:00', NULL, '00:00:00', 'Bea A. alinsonorin (Travel) Abroad on march 21-25-2026', NULL, NULL, '2026-02-18 01:43:23', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:44'),
 (223, 178, 1087, '0000-00-00', '2026-02-12', '-', 'MPDO', '00:00:00', NULL, '00:00:00', 'to mr. larry A. ambongao - to discuss & share any inputs & directions for CDP formulation', NULL, NULL, '2026-02-18 01:43:23', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:44'),
 (224, 177, 1088, '0000-00-00', '2026-02-12', '-', 'MPDO', '00:00:00', NULL, '00:00:00', 'for CDP formulation cum stakeholders write shop', NULL, NULL, '2026-02-18 01:43:23', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:44');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (225, 176, 1089, '0000-00-00', '2026-02-12', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'of vacant positions/project, Dev Officer III & Admin Aide II', NULL, NULL, '2026-02-18 01:43:23', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:44'),
 (226, 175, 1090, '0000-00-00', '2026-02-12', '-', 'CDDN', '00:00:00', NULL, '00:00:00', 'Gimangan, Vinzon Jay Lumanda', NULL, NULL, '2026-02-18 01:43:23', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:44'),
 (227, 174, 1091, '0000-00-00', '2026-02-12', '-', 'DILG', '00:00:00', NULL, '00:00:00', 'to MS. Catherine N. Pugosa, MLGOO', NULL, NULL, '2026-02-18 01:43:23', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:44'),
@@ -517,7 +508,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (426, 389, 876, '0000-00-00', '2026-02-13', '2026-02-13', 'HRMO', '00:00:00', NULL, '00:00:00', 'DOMINADOR V. BORRES - FEBRUARY 1-28-2026', NULL, NULL, '2026-02-18 01:43:24', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:35'),
 (427, 388, 877, '0000-00-00', '2026-02-13', '2026-02-13', 'HRMO', '00:00:00', NULL, '00:00:00', 'JANETH M. ABENION', NULL, NULL, '2026-02-18 01:43:24', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:35'),
 (428, 387, 878, '0000-00-00', '2026-02-13', '2026-02-13', 'HRMO', '00:00:00', NULL, '00:00:00', 'DAIZA MAE A. APDUHAN - FEBRUARY 1-28, 2026', NULL, NULL, '2026-02-18 01:43:24', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:35');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (429, 386, 879, '0000-00-00', '2026-02-13', '2026-02-13', 'HRMO', '00:00:00', NULL, '00:00:00', 'CHRISTIAN JAY Q. INTONG - FEBRUARY 1-28,2026', NULL, NULL, '2026-02-18 01:43:24', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:35'),
 (430, 385, 880, '0000-00-00', '2026-02-13', '2026-02-13', 'HRMO', '00:00:00', NULL, '00:00:00', 'SHANNEN U. COMENDADOR - FEBRUARY 1-28,2026', NULL, NULL, '2026-02-18 01:43:24', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:35'),
 (431, 384, 881, '0000-00-00', '2026-02-13', '2026-02-13', 'HRMO', '00:00:00', NULL, '00:00:00', 'ALSON O. SARIN - FEBRUARY 1-28, 2026', NULL, NULL, '2026-02-18 01:43:24', '2026-02-18 01:35:44', '2026-02-18 01:35:44', '2026-02-18 01:42:35'),
@@ -736,7 +727,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (644, 575, 690, '0000-00-00', '2026-02-05', '-', 'MBO', '00:00:00', NULL, '00:00:00', 'ARO NO. 117', NULL, NULL, '2026-02-18 01:43:26', '2026-02-18 01:35:45', '2026-02-18 01:35:45', '2026-02-18 01:42:24'),
 (645, 574, 691, '0000-00-00', '2026-02-05', '-', 'MBO', '00:00:00', NULL, '00:00:00', 'ARO NO. 169', NULL, NULL, '2026-02-18 01:43:26', '2026-02-18 01:35:45', '2026-02-18 01:35:45', '2026-02-18 01:42:24'),
 (646, 573, 692, '0000-00-00', '2026-02-05', '-', 'MBO', '00:00:00', NULL, '00:00:00', 'ARO NO. 168', NULL, NULL, '2026-02-18 01:43:26', '2026-02-18 01:35:45', '2026-02-18 01:35:45', '2026-02-18 01:42:24');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (647, 572, 693, '0000-00-00', '2026-02-05', '-', 'MBO', '00:00:00', NULL, '00:00:00', 'ARO NO. 167', NULL, NULL, '2026-02-18 01:43:26', '2026-02-18 01:35:45', '2026-02-18 01:35:45', '2026-02-18 01:42:24'),
 (648, 571, 694, '0000-00-00', '2026-02-05', '-', 'MBO', '00:00:00', NULL, '00:00:00', 'ARO NO. 166', NULL, NULL, '2026-02-18 01:43:26', '2026-02-18 01:35:45', '2026-02-18 01:35:45', '2026-02-18 01:42:24'),
 (649, 570, 695, '0000-00-00', '2026-02-05', '-', 'MBO', '00:00:00', NULL, '00:00:00', 'ARO NO. 165', NULL, NULL, '2026-02-18 01:43:26', '2026-02-18 01:35:45', '2026-02-18 01:35:45', '2026-02-18 01:42:24'),
@@ -956,7 +947,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (863, 815, 450, '0000-00-00', '2026-02-11', '-', 'Muslim', '00:00:00', NULL, '00:00:00', 'Sherila Porza Sawah Letter request for the contact of a one day seminar on insurance of certificate of registration of authority to solemnize marriage', NULL, NULL, '2026-02-18 01:43:27', '2026-02-18 01:38:07', '2026-02-18 01:38:07', '2026-02-18 01:42:04'),
 (864, 814, 451, '0000-00-00', '2026-02-11', '2026-02-12', 'MTO', '00:00:00', NULL, '00:00:00', 'Mr. lolito Llena & Kristymae Sodaso', NULL, NULL, '2026-02-18 01:43:27', '2026-02-18 01:38:07', '2026-02-18 01:38:07', '2026-02-18 01:42:04'),
 (865, 964, 301, '0000-00-00', '2026-02-16', '2026-02-16', 'MSWDO', '00:00:00', NULL, '00:00:00', 'JOSELITO M. VILLANUEVA, SR - PRK 8 MALIAVILLE, ISING', NULL, NULL, '2026-02-18 01:43:27', '2026-02-18 01:38:07', '2026-02-18 01:38:07', '2026-02-18 01:42:00');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (866, 963, 302, '0000-00-00', '2026-02-16', '2026-02-16', 'MSWDO', '00:00:00', NULL, '00:00:00', 'ALBERT ACEBIDO - PRK 3, MANGALCAL, CARMEN', NULL, NULL, '2026-02-18 01:43:27', '2026-02-18 01:38:07', '2026-02-18 01:38:07', '2026-02-18 01:42:00'),
 (867, 962, 303, '0000-00-00', '2026-02-16', '2026-02-16', 'MSWDO', '00:00:00', NULL, '00:00:00', 'CATHERINE D. LABRADOR', NULL, NULL, '2026-02-18 01:43:27', '2026-02-18 01:38:07', '2026-02-18 01:38:07', '2026-02-18 01:42:00'),
 (868, 961, 304, '0000-00-00', '2026-02-16', '2026-02-16', 'MSWDO', '00:00:00', NULL, '00:00:00', 'KRISTINE JEAN H. TUBO - CARMEN, DAVAO DEL NORTE', NULL, NULL, '2026-02-18 01:43:27', '2026-02-18 01:38:07', '2026-02-18 01:38:07', '2026-02-18 01:42:00'),
@@ -1164,7 +1155,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (1070, 1163, 102, '0000-00-00', '2026-02-06', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'ROCEL MAY A. SORAN', NULL, NULL, '2026-02-18 01:45:59', '2026-02-18 01:38:08', '2026-02-18 01:38:08', '2026-02-18 01:41:32'),
 (1071, 1162, 103, '0000-00-00', '2026-02-06', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'MAY JAY D. GOMEZ', NULL, NULL, '2026-02-18 01:45:59', '2026-02-18 01:38:08', '2026-02-18 01:38:08', '2026-02-18 01:41:32'),
 (1072, 1161, 104, '0000-00-00', '2026-02-06', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'FEVELYN A. ALONG', NULL, NULL, '2026-02-18 01:45:59', '2026-02-18 01:38:08', '2026-02-18 01:38:08', '2026-02-18 01:41:32');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (1073, 1160, 105, '0000-00-00', '2026-02-06', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'ANA LIZA A. BASNILLO', NULL, NULL, '2026-02-18 01:45:59', '2026-02-18 01:38:08', '2026-02-18 01:38:08', '2026-02-18 01:41:32'),
 (1074, 1159, 106, '0000-00-00', '2026-02-06', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Fredelyn D. Burlat', NULL, NULL, '2026-02-18 01:45:59', '2026-02-18 01:38:08', '2026-02-18 01:38:08', '2026-02-18 01:41:32'),
 (1075, 1158, 107, '0000-00-00', '2026-02-06', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Joy A. Moscessa', NULL, NULL, '2026-02-18 01:45:59', '2026-02-18 01:38:08', '2026-02-18 01:38:08', '2026-02-18 01:41:32'),
@@ -1383,7 +1374,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (1288, 1374, 1990, '0000-00-00', '2026-02-13', '2026-02-12', 'MEO', '00:00:00', NULL, '00:00:00', 'PHP 42,750.00', NULL, NULL, '2026-02-18 01:55:40', '2026-02-18 01:50:19', '2026-02-18 01:50:19', '2026-02-18 01:51:11'),
 (1289, 1373, 1991, '0000-00-00', '2026-02-13', '2026-02-13', 'MAYOR\'S OFFICE', '00:00:00', NULL, '00:00:00', 'PHP 9,600.00', NULL, NULL, '2026-02-18 01:55:40', '2026-02-18 01:50:19', '2026-02-18 01:50:19', '2026-02-18 01:51:11'),
 (1290, 1372, 1992, '0000-00-00', '2026-02-13', '2026-02-13', 'MENRO', '00:00:00', NULL, '00:00:00', 'PHP 134,811.00', NULL, NULL, '2026-02-18 01:55:40', '2026-02-18 01:50:19', '2026-02-18 01:50:19', '2026-02-18 01:51:11');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (1291, 1371, 1993, '0000-00-00', '2026-02-13', '2026-02-13', 'MSWDO', '00:00:00', NULL, '00:00:00', 'PHP 207,480.00', NULL, NULL, '2026-02-18 01:55:40', '2026-02-18 01:50:19', '2026-02-18 01:50:19', '2026-02-18 01:51:11'),
 (1292, 1370, 1994, '0000-00-00', '2026-02-13', '2026-02-13', 'MSWDO', '00:00:00', NULL, '00:00:00', 'PHP 3,800.00', NULL, NULL, '2026-02-18 01:55:40', '2026-02-18 01:50:19', '2026-02-18 01:50:19', '2026-02-18 01:51:11'),
 (1293, 1369, 1995, '0000-00-00', '2026-02-13', '2026-02-13', 'Information', '00:00:00', NULL, '00:00:00', 'PHP 1,000.00', NULL, NULL, '2026-02-18 01:55:40', '2026-02-18 01:50:19', '2026-02-18 01:50:19', '2026-02-18 01:51:11'),
@@ -1598,7 +1589,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (1502, 1661, 1703, '0000-00-00', '2026-02-16', '2026-02-16', 'MEO', '00:00:00', NULL, '00:00:00', 'BENJIE EARN M. PAUTAN - PRK6, ISING, CARMEN', NULL, NULL, '2026-02-18 01:55:41', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:51:00'),
 (1503, 1660, 1704, '0000-00-00', '2026-02-16', '2026-02-16', 'MEO', '00:00:00', NULL, '00:00:00', 'MARK ANGELO S. FURIA - MAGSAYSAY, CARMEN', NULL, NULL, '2026-02-18 01:55:41', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:51:00'),
 (1504, 1659, 1705, '0000-00-00', '2026-02-16', '2026-02-16', 'MEO', '00:00:00', NULL, '00:00:00', 'MARK ANGELO S. FURIA', NULL, NULL, '2026-02-18 01:55:41', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:51:00');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (1505, 1658, 1706, '0000-00-00', '2026-02-16', '2026-02-16', 'MEO', '00:00:00', NULL, '00:00:00', 'CLEMENTE G. CABUYADAO - PRK 1, TUGANAY, CARMEN', NULL, NULL, '2026-02-18 01:55:41', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:51:00'),
 (1506, 1657, 1707, '0000-00-00', '2026-02-16', '2026-02-16', 'MEO', '00:00:00', NULL, '00:00:00', 'ERNIE D. DAMAOLAO - PRK 6 ICARE, ISING, CARMEN', NULL, NULL, '2026-02-18 01:55:41', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:51:00'),
 (1507, 1656, 1708, '0000-00-00', '2026-02-16', '2026-02-16', 'MEO', '00:00:00', NULL, '00:00:00', 'DANIEL C. BANQUERIGO - PRK 6 ISING, CARMEN', NULL, NULL, '2026-02-18 01:55:41', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:51:00'),
@@ -1805,7 +1796,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (1708, 1817, 1547, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Roldan L. Ragas - Prk 3C, Sto NiÃ±o', NULL, NULL, '2026-02-18 01:55:42', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:50:51'),
 (1709, 1816, 1548, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Fil John M. Lagora - Prk 2, Magsaysay', NULL, NULL, '2026-02-18 01:55:42', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:50:51'),
 (1710, 1815, 1549, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'onnel Victor B. Karaan - Prk 5, Tubod', NULL, NULL, '2026-02-18 01:55:42', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:50:51');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (1711, 1814, 1550, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Judy B. Roters - Prk 3A, Cebulano', NULL, NULL, '2026-02-18 01:55:42', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:50:51'),
 (1712, 1813, 1551, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Lorenzo T. AÃ±is JR. - Prk 1A, Cebulano', NULL, NULL, '2026-02-18 01:55:42', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:50:51'),
 (1713, 1812, 1552, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Jay B. Ocmeja - Prk 6, Cebulano', NULL, NULL, '2026-02-18 01:55:42', '2026-02-18 01:50:20', '2026-02-18 01:50:20', '2026-02-18 01:50:51'),
@@ -2024,7 +2015,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (1926, 1289, 1325, '2026-02-16', 'MEO', '2/16/2026', 'MEO', '00:00:00', NULL, NULL, 'Contract Of Service', NULL, NULL, '2026-02-18 01:55:44', '2026-02-18 01:47:43', '2026-02-18 01:47:43', '2026-02-18 01:49:43'),
 (1927, 1288, 1326, '2026-02-16', 'MEO', '2/16/2026', 'MEO', '00:00:00', NULL, NULL, 'Contract Of Service', NULL, NULL, '2026-02-18 01:55:44', '2026-02-18 01:47:43', '2026-02-18 01:47:43', '2026-02-18 01:49:43'),
 (1928, 1287, 1327, '2026-02-16', 'MEO', '2/16/2026', 'MEO', '00:00:00', NULL, NULL, 'Contract Of Service', NULL, NULL, '2026-02-18 01:55:44', '2026-02-18 01:47:43', '2026-02-18 01:47:43', '2026-02-18 01:49:43');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (1929, 1286, 1328, '2026-02-16', 'MEO', '2/16/2026', 'MEO', '00:00:00', NULL, NULL, 'Contract Of Service', NULL, NULL, '2026-02-18 01:55:44', '2026-02-18 01:47:43', '2026-02-18 01:47:43', '2026-02-18 01:49:43'),
 (1930, 1285, 1329, '2026-02-16', 'MEO', '2/16/2026', 'MEO', '00:00:00', NULL, NULL, 'Contract Of Service', NULL, NULL, '2026-02-18 01:55:44', '2026-02-18 01:47:43', '2026-02-18 01:47:43', '2026-02-18 01:49:43'),
 (1931, 1284, 1330, '2026-02-16', 'MEO', '2/16/2026', 'MEO', '00:00:00', NULL, NULL, 'Contract Of Service', NULL, NULL, '2026-02-18 01:55:44', '2026-02-18 01:47:43', '2026-02-18 01:47:43', '2026-02-18 01:49:43'),
@@ -2248,7 +2239,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (2149, 3544, 3487, '0000-00-00', '02/16/2026', '02/16/2026', 'PNP', '00:00:00', NULL, '00:00:00', 'NESTLE G. NAMIS', NULL, NULL, '2026-02-18 02:18:59', '2026-02-18 02:15:29', '2026-02-18 02:15:29', '2026-02-18 02:18:46'),
 (2150, 3543, 3488, '0000-00-00', '02/16/2026', '02/16/2026', 'PNP', '00:00:00', NULL, '00:00:00', 'JAIME A. INTONG SR.', NULL, NULL, '2026-02-18 02:18:59', '2026-02-18 02:15:29', '2026-02-18 02:15:29', '2026-02-18 02:18:46'),
 (2151, 3542, 3489, '0000-00-00', '02/16/2026', '02/16/2026', 'PNP', '00:00:00', NULL, '00:00:00', 'DANILO R. DELOS REYES', NULL, NULL, '2026-02-18 02:18:59', '2026-02-18 02:15:29', '2026-02-18 02:15:29', '2026-02-18 02:18:46');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (2152, 3541, 3490, '0000-00-00', '02/16/2026', '02/16/2026', 'PNP', '00:00:00', NULL, '00:00:00', 'RAUL O. BERIDO - PRK 9 SADPUDON ISING CARMEN', NULL, NULL, '2026-02-18 02:18:59', '2026-02-18 02:15:29', '2026-02-18 02:15:29', '2026-02-18 02:18:46'),
 (2153, 3540, 3491, '0000-00-00', '02/16/2026', '02/16/2026', 'PNP', '00:00:00', NULL, '00:00:00', 'MA ANNA LOU U. CATUNGAL - PRK 3A TUBOD CARMEN', NULL, NULL, '2026-02-18 02:18:59', '2026-02-18 02:15:29', '2026-02-18 02:15:29', '2026-02-18 02:18:46'),
 (2154, 3539, 3492, '0000-00-00', '02/16/2026', '02/16/2026', 'PNP', '00:00:00', NULL, '00:00:00', 'MERCY C. BUTI - P-3B STO NINO CARMEN', NULL, NULL, '2026-02-18 02:18:59', '2026-02-18 02:15:29', '2026-02-18 02:15:29', '2026-02-18 02:18:46'),
@@ -2464,7 +2455,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (2364, 2017, 3243, '0000-00-00', '2026-02-12', '2026-02-13', 'GSO', '00:00:00', NULL, '00:00:00', 'PHP 8,692.00', NULL, NULL, '2026-02-18 02:19:00', '2026-02-18 01:51:53', '2026-02-18 01:51:53', '2026-02-18 02:14:25'),
 (2365, 2016, 3244, '0000-00-00', '2026-02-12', '2026-02-13', 'BFP', '00:00:00', NULL, '00:00:00', 'PHP 56,675.00', NULL, NULL, '2026-02-18 02:19:00', '2026-02-18 01:51:53', '2026-02-18 01:51:53', '2026-02-18 02:14:25'),
 (2366, 2015, 3245, '0000-00-00', '2026-02-12', '2026-02-13', 'BFP', '00:00:00', NULL, '00:00:00', 'PHP 28,700.00', NULL, NULL, '2026-02-18 02:19:00', '2026-02-18 01:51:53', '2026-02-18 01:51:53', '2026-02-18 02:14:25');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (2367, 2014, 3246, '0000-00-00', '2026-02-12', '2026-02-13', 'MEO', '00:00:00', NULL, '00:00:00', 'PHP 8,704.00', NULL, NULL, '2026-02-18 02:19:00', '2026-02-18 01:51:53', '2026-02-18 01:51:53', '2026-02-18 02:14:25'),
 (2368, 2013, 3247, '0000-00-00', '2026-02-12', '2026-02-13', 'MTO', '00:00:00', NULL, '00:00:00', 'PHP 8,160.00', NULL, NULL, '2026-02-18 02:19:01', '2026-02-18 01:51:53', '2026-02-18 01:51:53', '2026-02-18 02:14:25'),
 (2369, 2012, 3248, '0000-00-00', '2026-02-12', '2026-02-13', 'BFP', '00:00:00', NULL, '00:00:00', 'PHP 44,200.00', NULL, NULL, '2026-02-18 02:19:01', '2026-02-18 01:51:53', '2026-02-18 01:51:53', '2026-02-18 02:14:25'),
@@ -2680,7 +2671,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (2579, 2210, 3050, '0000-00-00', '2026-02-06', '2026-02-06', 'MHO', '00:00:00', NULL, '00:00:00', 'Ruchille S. Arrocena, MD, FPSMSI, MAHA -Requesting to submit monthly morbidity, maternal care & Services(deliveries) & child care and Services (immuni', NULL, NULL, '2026-02-18 02:19:02', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:18'),
 (2580, 2209, 3051, '0000-00-00', '2026-02-06', '2026-02-06', 'MHO', '00:00:00', NULL, '00:00:00', 'Jesus M. Gaviola, MD, DPAMS - Requesting to submit monthly morbidity, maternal care & Services(deliveries) & child care and Services (immunization) re', NULL, NULL, '2026-02-18 02:19:02', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:18'),
 (2581, 2208, 3052, '0000-00-00', '2026-02-06', '-', 'MHO', '00:00:00', NULL, '00:00:00', 'For LHB on feb 19,2026', NULL, NULL, '2026-02-18 02:19:02', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:18');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (2582, 2207, 3053, '0000-00-00', '2026-02-06', '-', 'CNHS', '00:00:00', NULL, '00:00:00', 'Cristal Marie A. Ibanez', NULL, NULL, '2026-02-18 02:19:02', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:18'),
 (2583, 2206, 3054, '0000-00-00', '2026-02-06', '-', 'MO', '00:00:00', NULL, '00:00:00', 'Not requiring receipts for telephone mobile allowance fortune month of january 2026', NULL, NULL, '2026-02-18 02:19:02', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:18'),
 (2584, 2205, 3055, '0000-00-00', '2026-02-09', '-', 'HHRA', '00:00:00', NULL, '00:00:00', 'No. 142-2022020564', NULL, NULL, '2026-02-18 02:19:02', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:18'),
@@ -2885,7 +2876,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (2783, 2382, 2878, '0000-00-00', '2026-02-13', '2026-02-13', 'HRMO', '00:00:00', NULL, '00:00:00', 'SHANNEN U. COMENDADOR - FEBRUARY 1-28,2026', NULL, NULL, '2026-02-18 02:19:03', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:10'),
 (2784, 2461, 2799, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Josephine A. Carganilla - PRK 1 â€“ New Camiling', NULL, NULL, '2026-02-18 02:19:03', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:10'),
 (2785, 2460, 2800, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Haydee P. Bagsic - PRK 6 â€“ New Camiling', NULL, NULL, '2026-02-18 02:19:03', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:10');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (2786, 2459, 2801, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Rosalinda M. Acosta - PRK 1 â€“ New Camiling', NULL, NULL, '2026-02-18 02:19:03', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:10'),
 (2787, 2458, 2802, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Hermy R. Bausonb - PRK 3 â€“ Mangalcal', NULL, NULL, '2026-02-18 02:19:03', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:10'),
 (2788, 2457, 2803, '0000-00-00', '2026-02-10', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'Reynaldo P. Alpay Sr. - PRK 4 â€“ New Camiling', NULL, NULL, '2026-02-18 02:19:03', '2026-02-18 01:51:54', '2026-02-18 01:51:54', '2026-02-18 02:14:10'),
@@ -3104,7 +3095,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (3001, 2700, 2560, '0000-00-00', '2026-02-09', '-', 'MEEDO', '00:00:00', NULL, '00:00:00', 'PHP 13,200.00', NULL, NULL, '2026-02-18 02:19:11', '2026-02-18 01:57:59', '2026-02-18 01:57:59', '2026-02-18 02:13:59'),
 (3002, 2699, 2561, '0000-00-00', '2026-02-09', '2026-02-10', 'MSWDO', '00:00:00', NULL, '00:00:00', 'PHP 1,460,000.00', NULL, NULL, '2026-02-18 02:19:11', '2026-02-18 01:57:59', '2026-02-18 01:57:59', '2026-02-18 02:13:59'),
 (3003, 2698, 2562, '0000-00-00', '2026-02-09', '-', 'GSO', '00:00:00', NULL, '00:00:00', 'PHP 200.00', NULL, NULL, '2026-02-18 02:19:11', '2026-02-18 01:57:59', '2026-02-18 01:57:59', '2026-02-18 02:13:59');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (3004, 2697, 2563, '0000-00-00', '2026-02-09', '-', 'BAC', '00:00:00', NULL, '00:00:00', 'PHP 834,430.00', NULL, NULL, '2026-02-18 02:19:11', '2026-02-18 01:57:59', '2026-02-18 01:57:59', '2026-02-18 02:13:59'),
 (3005, 2696, 2564, '0000-00-00', '2026-02-09', '-', 'BAC', '00:00:00', NULL, '00:00:00', 'PHP 827,785.00', NULL, NULL, '2026-02-18 02:19:11', '2026-02-18 01:57:59', '2026-02-18 01:57:59', '2026-02-18 02:13:59'),
 (3006, 2695, 2565, '0000-00-00', '2026-02-09', '2026-02-10', 'MTO', '00:00:00', NULL, '00:00:00', 'PHP 1,200.00', NULL, NULL, '2026-02-18 02:19:11', '2026-02-18 01:57:59', '2026-02-18 01:57:59', '2026-02-18 02:13:59'),
@@ -3320,7 +3311,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (3216, 2941, 2319, '0000-00-00', '2026-02-16', '2026-02-16', 'PNP', '00:00:00', NULL, '00:00:00', 'DANILO R. DELOS REYES', NULL, NULL, '2026-02-18 02:19:13', '2026-02-18 01:58:00', '2026-02-18 01:58:00', '2026-02-18 02:13:52'),
 (3217, 2940, 2320, '0000-00-00', '2026-02-16', '2026-02-16', 'PNP', '00:00:00', NULL, '00:00:00', 'RAUL O. BERIDO - PRK 9 SADPUDON, ISING, CARMEN', NULL, NULL, '2026-02-18 02:19:13', '2026-02-18 01:58:00', '2026-02-18 01:58:00', '2026-02-18 02:13:52'),
 (3218, 2939, 2321, '0000-00-00', '2026-02-16', '2026-02-16', 'PNP', '00:00:00', NULL, '00:00:00', 'MA ANNA LOU U. CATUNGAL - PRK 3A, TUBOD, CARMEN', NULL, NULL, '2026-02-18 02:19:13', '2026-02-18 01:58:00', '2026-02-18 01:58:00', '2026-02-18 02:13:52');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (3219, 2938, 2322, '0000-00-00', '2026-02-16', '2026-02-16', 'PNP', '00:00:00', NULL, '00:00:00', 'MERCY C. BUTI - P-3B, STO NINO, CARMEN', NULL, NULL, '2026-02-18 02:19:13', '2026-02-18 01:58:00', '2026-02-18 01:58:00', '2026-02-18 02:13:52'),
 (3220, 2937, 2323, '0000-00-00', '2026-02-16', '2026-02-16', 'RCO', '00:00:00', NULL, '00:00:00', 'VIA MAE E. LAVINA - PRK 4, TABA, CARMEN', NULL, NULL, '2026-02-18 02:19:13', '2026-02-18 01:58:00', '2026-02-18 01:58:00', '2026-02-18 02:13:52'),
 (3221, 2936, 2324, '0000-00-00', '2026-02-16', '2026-02-16', 'MABUHAY/WATCHMAN', '00:00:00', NULL, '00:00:00', 'RICO N. TIBAY - MABUHAY, CARMEN', NULL, NULL, '2026-02-18 02:19:13', '2026-02-18 01:58:00', '2026-02-18 01:58:00', '2026-02-18 02:13:52'),
@@ -3526,7 +3517,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (3421, 3141, 2119, '0000-00-00', '2026-02-09', '2026-02-10', 'BAC', '00:00:00', NULL, '00:00:00', 'No. 021-S2026', NULL, NULL, '2026-02-18 02:19:14', '2026-02-18 01:58:01', '2026-02-18 01:58:01', '2026-02-18 02:13:45'),
 (3422, 3140, 2120, '0000-00-00', '2026-02-09', '-', 'HRMO', '00:00:00', NULL, '00:00:00', 'For feb 1-28,2026', NULL, NULL, '2026-02-18 02:19:14', '2026-02-18 01:58:01', '2026-02-18 01:58:01', '2026-02-18 02:13:45'),
 (3423, 3139, 2121, '0000-00-00', '2026-02-09', '-', 'MASSO', '00:00:00', NULL, '00:00:00', 'Argin A. Ceniza, ET AL -8', NULL, NULL, '2026-02-18 02:19:14', '2026-02-18 01:58:01', '2026-02-18 01:58:01', '2026-02-18 02:13:45');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (3424, 3138, 2122, '0000-00-00', '2026-02-09', '-', 'MSWDO', '00:00:00', NULL, '00:00:00', 'Virginia C. Abugan ET AL - 11', NULL, NULL, '2026-02-18 02:19:14', '2026-02-18 01:58:01', '2026-02-18 01:58:01', '2026-02-18 02:13:45'),
 (3425, 3137, 2123, '0000-00-00', '2026-02-09', '2026-02-09', 'MPDO', '00:00:00', NULL, '00:00:00', 'for Mindanao Railway Project (Land Acquisition) - 4,700,000.00 - w/Revised Consolidated program of works - P235,000,000.00', NULL, NULL, '2026-02-18 02:19:14', '2026-02-18 01:58:01', '2026-02-18 01:58:01', '2026-02-18 02:13:45'),
 (3426, 3136, 2124, '0000-00-00', '2026-02-09', '-', 'MPDO', '00:00:00', NULL, '00:00:00', 'for mindanao railway project (land acquisition) - P4,700,000.00', NULL, NULL, '2026-02-18 02:19:14', '2026-02-18 01:58:01', '2026-02-18 01:58:01', '2026-02-18 02:13:45'),
@@ -3740,7 +3731,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 (3634, 3647, 3639, '2026-02-16', 'PNP', 'RAUL O. BERIDO - PRK 9 SADPUDON ISING CARMEN', 'TO YVETTE', '10:58:00', NULL, '16:03:00', 'Contract Of Service', NULL, NULL, '2026-02-19 06:46:02', '2026-02-18 02:19:23', '2026-02-18 02:19:23', '2026-02-18 02:20:18'),
 (3635, 3646, 3640, '2026-02-16', 'PNP', 'MA ANNA LOU U. CATUNGAL - PRK 3A TUBOD CARMEN', 'TO YVETTE', '10:58:00', NULL, '16:03:00', 'Contract Of Service', NULL, NULL, '2026-02-19 06:46:02', '2026-02-18 02:19:23', '2026-02-18 02:19:23', '2026-02-18 02:20:18'),
 (3636, 3645, 3641, '2026-02-16', 'PNP', 'MERCY C. BUTI - P-3B STO NINO CARMEN', 'TO YVETTE', '10:58:00', NULL, '16:03:00', 'Contract Of Service', NULL, NULL, '2026-02-19 06:46:02', '2026-02-18 02:19:23', '2026-02-18 02:19:23', '2026-02-18 02:20:18');
-INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
+INSERT INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `deleted_at`, `created_at`, `updated_at`, `archived_at`) VALUES
 (3637, 3644, 3642, '2026-02-16', 'RCO', 'VIA MAE E. LAVINA - PRK 4 TABA CARMEN', 'TO YVETTE', '10:58:00', NULL, '16:03:00', 'Contract Of Service', NULL, NULL, '2026-02-19 06:46:02', '2026-02-18 02:19:23', '2026-02-18 02:19:23', '2026-02-18 02:20:18'),
 (3638, 3643, 3643, '2026-02-16', 'MABUHAY/WATCHMAN', 'RICO N. TIBAY - MABUHAY CARMEN', 'TO YVETTE', '10:58:00', NULL, '16:03:00', 'Contract Of Service', NULL, NULL, '2026-02-19 06:46:02', '2026-02-18 02:19:23', '2026-02-18 02:19:23', '2026-02-18 02:20:18'),
 (3639, 3642, 3644, '2026-02-16', 'MABUHAY/WATCHMAN', 'SHEENA MAE M. KINES - MABUHAY CARMEN', 'TO YVETTE', '10:58:00', NULL, '16:03:00', 'Contract Of Service', NULL, NULL, '2026-02-19 06:46:02', '2026-02-18 02:19:23', '2026-02-18 02:19:23', '2026-02-18 02:20:18'),
@@ -3817,7 +3808,7 @@ INSERT IGNORE INTO `deleted_documents` (`id`, `original_id`, `archive_id`, `date
 -- Table structure for table `document_logs`
 --
 
-CREATE TABLE IF NOT EXISTS `document_logs` (
+CREATE TABLE `document_logs` (
   `id` int(11) NOT NULL,
   `date_received` date NOT NULL,
   `office` varchar(150) NOT NULL,
@@ -3831,19 +3822,14 @@ CREATE TABLE IF NOT EXISTS `document_logs` (
   `other_document_type` varchar(150) DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `idx_date_received` (`date_received`),
-  KEY `idx_document_type` (`document_type`),
-  KEY `idx_document_type_id` (`document_type_id`),
-  KEY `idx_office` (`office`)
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `document_logs`
 --
 
-INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
+INSERT INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
 (3702, '2026-02-04', 'MMOA', 'Cargoe MPL - Snack to be used', 'To Jay', '08:33:00', '0000-00-00', '15:55:00', 'Purchase Order', 1, NULL, 8400.00, '2026-02-18 02:20:41', '2026-02-18 02:20:41'),
 (3703, '2026-02-02', 'MDRRMO', 'PR of meals and snack for ICS & Emergency operation', 'to yvette', '10:43:00', '0000-00-00', '00:54:00', 'Purchase Request', 2, NULL, 96000.00, '2026-02-18 02:20:41', '2026-02-18 02:20:41'),
 (3704, '2026-02-02', 'GSO', 'PR of Meals for ARTA Personnel', 'return to GSO', '01:27:00', '0000-00-00', '15:35:00', 'Purchase Request', 2, NULL, 1905.00, '2026-02-18 02:20:41', '2026-02-18 02:20:41'),
@@ -4084,7 +4070,7 @@ INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particular
 (3940, '2026-02-09', 'MO', 'P.O. - CARGOE MPC / Meals & Snacks for IFC, LSB & LFC meetings', 'TO JAY', '08:58:00', '2026-02-09', '12:53:00', 'Purchase Order', 1, NULL, 17100.00, '2026-02-18 23:58:01', '2026-02-18 23:58:01'),
 (3941, '2026-02-09', 'GSO', 'P.O. - MAC Printing Services / MTZP Permits', 'TO JAY', '08:58:00', '2026-02-09', '12:53:00', 'Purchase Order', 1, NULL, 3000.00, '2026-02-18 23:58:40', '2026-02-18 23:58:40'),
 (3942, '2026-02-09', 'MTO', 'P.O. - Nanay Abeth Catering Services / Meals for Business Processing Acts.', 'TO JAY', '08:58:00', '2026-02-09', '12:53:00', 'Purchase Order', 1, NULL, 23200.00, '2026-02-18 23:59:12', '2026-02-18 23:59:12');
-INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
+INSERT INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
 (3943, '2026-02-09', 'MEEDO', 'P.O. - PLDT INC. / Internet Subscription for Jan - Dec. 2023', 'TO JAY', '08:58:00', '2026-02-09', '12:53:00', 'Purchase Order', 1, NULL, 40320.00, '2026-02-18 23:59:46', '2026-02-18 23:59:46'),
 (3944, '2026-02-09', 'MSWDO', 'P.O. - CARGOE MPC / Meals & Snacks for LCPC Quarterly Meeting', 'TO JAY', '08:58:00', '2026-02-09', '12:53:00', 'Purchase Order', 1, NULL, 13200.00, '2026-02-19 00:00:17', '2026-02-19 00:00:17'),
 (3945, '2026-02-06', 'BAC', 'BAC Resolution No. 25, - 31 - S - 2024', 'RETURN TO BAC', '14:37:00', '2026-02-09', '14:38:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-02-19 00:01:58', '2026-02-19 00:01:58'),
@@ -4316,7 +4302,7 @@ INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particular
 (4171, '2026-02-06', 'GSO', 'PR of R/m of Duplo Machine', 'TO JAY', '16:13:00', '2026-02-09', '11:20:00', 'Purchase Request', 2, NULL, 16000.00, '2026-02-19 05:42:38', '2026-02-19 05:42:38'),
 (4172, '2026-02-09', 'GSO', 'PR of Motorcycle Temp. Plate No 1101-1446452', 'TO JAY', '16:13:00', '2026-02-09', '11:20:00', 'Purchase Request', 2, NULL, 200.00, '2026-02-19 05:43:07', '2026-02-19 05:43:07'),
 (4173, '2026-02-06', 'INFO', 'PR of Office supplies', 'TO JAY', '16:27:00', NULL, '12:42:00', 'Purchase Request', 2, NULL, 1870.00, '2026-02-19 05:49:20', '2026-02-19 05:49:20');
-INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
+INSERT INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
 (4174, '2026-02-06', 'INFO', 'PR of Tarpaulin for Araw ng Barangay', 'TO JAY', '16:27:00', '2026-02-09', '12:42:00', 'Purchase Request', 2, NULL, 19200.00, '2026-02-19 05:49:52', '2026-02-19 05:49:52'),
 (4175, '2026-02-06', 'INFO', 'PR of Office Supplies', 'TO JAY', '16:27:00', '2026-02-09', '12:42:00', 'Purchase Request', 2, NULL, 80130.00, '2026-02-19 05:50:22', '2026-02-19 05:50:22'),
 (4176, '2026-02-06', 'GAD', 'PR of other supplies', 'TO JAY', '16:43:00', '2026-02-09', '12:42:00', 'Purchase Request', 2, NULL, 4140.00, '2026-02-19 05:51:17', '2026-02-19 05:51:17'),
@@ -4531,7 +4517,7 @@ INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particular
 (4386, '2026-03-03', 'Info', 'PR OF TARPULIN FOR CONDUCT VALUES-FORMATION WORKSHOP/SEMINARS, SPIRITUAL ENHANCEMENT MTGS. & PRE MARRIAGE COUNSELING ', 'TO JAY', '16:33:00', '2026-03-04', '08:41:00', 'Purchase Request', 2, NULL, 360.00, '2026-03-04 02:38:46', '2026-03-04 02:38:46'),
 (4387, '2026-03-03', 'MSWDO', 'PR OF MEALS & SNACKS FOR COORDINATION MEETING DSWD CONVERGENCE TEAM ON MARCH 6, 2026', 'TO JAY', '16:36:00', '2026-03-04', '08:41:00', 'Purchase Request', 2, NULL, 17500.00, '2026-03-04 02:41:46', '2026-03-04 02:41:46'),
 (4388, '2026-03-03', 'Info', 'PR OF TARPULIN FOR PROMOTING AWARENESS IN OBSERVANCE OF ISLAMIC CULTURAL CELEBRATION', 'TO JAY', '16:33:00', '2026-03-04', '08:41:00', 'Purchase Request', 2, NULL, 9600.00, '2026-03-04 02:43:16', '2026-03-04 02:43:16');
-INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
+INSERT INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
 (4390, '2026-03-04', 'MO', 'MEMORANDUM ORDER - TO DEPT. HEADS & SECTION HEADS - ALL DRIVERS ARE HEREBY DIRECTED TO COMPLETE ALL REQUIRED ENTRIES IN THE TRIPTICKET FOR ALL OFFICIAL VEHICLE', 'TO JAY', '10:04:00', '2026-03-04', '11:16:00', 'Memorandum Order', 8, NULL, NULL, '2026-03-04 03:42:35', '2026-03-04 03:42:35'),
 (4391, '2026-03-04', 'MO', 'ADMINISTRATIVE ORDER - AUTHORIZING & GRANTING TRAVEL ALLOWANCE, MEAL ALLOWANCE & HEALTH CARD TO BHW SERVING AS VOLUNTEERS STAFF @CENTRAL KITCHEN UNDER BLT PROGRAM', 'TO YVETTE', '10:04:00', '2026-03-04', '11:38:00', 'Administrative Order', 9, NULL, NULL, '2026-03-04 03:44:37', '2026-03-04 03:44:37'),
 (4392, '2026-03-04', 'MTO', 'BUSINESS PERMIT - PRINCESS RICHIE FOOD CART / WILFREDO DAGUPIO LAGRIDA IR', 'TO JAY', '13:56:00', '2026-03-04', '14:56:00', 'Business Permit', 6, NULL, NULL, '2026-03-04 07:36:42', '2026-03-04 07:37:18'),
@@ -4751,7 +4737,7 @@ INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particular
 (4606, '2026-03-09', 'HRMO', 'CONTRACT OF SERVICE FOR MARCH 1-31 2026 - MICHAEL A. MELECIO', 'TO YVETTE', '13:15:00', NULL, '15:24:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-09 08:07:54', '2026-03-09 08:07:54'),
 (4607, '2026-03-09', 'HRMO', 'CONTRACT OF SERVICE FOR MARCH 1-31 2026 - RAFFY TEREMCE F. MALACURA', 'TO YVETTE', '13:15:00', NULL, '15:24:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-09 08:08:27', '2026-03-09 08:08:27'),
 (4608, '2026-03-09', 'HRMO', 'CONTRACT OF SERVICE FOR MARCH 1-31 2026 - LOVELEY APARECIO', 'TO YVETTE', '13:15:00', NULL, '15:24:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-09 08:08:51', '2026-03-09 08:08:51');
-INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
+INSERT INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
 (4609, '2026-03-09', 'HRMO', 'CONTRACT OF SERVICE FOR MARCH 1-31 2026 - LOVELY APARECIO', 'TO YVETTE', '13:15:00', '2026-03-09', '15:24:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-09 08:10:27', '2026-03-09 08:10:27'),
 (4610, '2026-03-09', 'HRMO', 'CONTRACT OF SERVICE FOR MARCH 1-31 2026 - MARYLLE KATE C. ROFEROS', 'TO YVETTE', '13:15:00', '2026-03-09', '15:24:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-09 08:10:52', '2026-03-09 08:10:52'),
 (4611, '2026-03-09', 'HRMO', 'CONTRACT OF SERVICE FOR MARCH 1-31 2026 - JONEL LOPEZ', 'TO YVETTE', '13:15:00', '2026-03-09', '15:24:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-09 08:11:19', '2026-03-09 08:11:19'),
@@ -4963,13 +4949,149 @@ INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particular
 (4817, '2026-03-12', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OG MARCH 1-31, 2026 NESTOR S. BARCINAS', 'TO YVETTE', '02:25:00', '2026-03-12', '17:41:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-12 10:12:47', '2026-03-12 10:12:47'),
 (4818, '2026-03-12', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OG MARCH 1-31, 2026 PHILIP L. GUYAPA', 'TO YVETTE', '02:25:00', '2026-03-12', '17:41:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-12 10:13:09', '2026-03-12 10:13:09'),
 (4819, '2026-03-12', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OG MARCH 1-31, 2026 FLORDELIZA C. ALIA', 'TO YVETTE', '02:25:00', '2026-03-12', '17:41:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-12 10:13:43', '2026-03-12 10:13:43');
-INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
+INSERT INTO `document_logs` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `document_type_id`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
 (4820, '2026-03-12', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OG MARCH 1-31, 2026 MELROSE B. AMPONG', 'TO YVETTE', '14:25:00', '2026-03-12', '17:41:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-12 10:14:13', '2026-03-12 10:14:13'),
 (4821, '2026-03-12', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OG MARCH 1-31, 2026 PHILIP L. GUYAPA', 'TO YVETTE', '14:25:00', '2026-03-12', '17:41:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-12 10:14:36', '2026-03-12 10:14:36'),
 (4822, '2026-03-12', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OG MARCH 1-31, 2026 PABLO A. CUYOS', 'TO YVETTE', '14:25:00', '2026-03-12', '17:41:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-12 10:15:13', '2026-03-12 10:15:13'),
 (4823, '2026-03-12', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OG MARCH 1-31, 2026 ARNOLD M. BACALSO', 'TO YVETTE', '14:25:00', '2026-03-12', '17:41:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-12 10:15:34', '2026-03-12 10:15:34'),
 (4824, '2026-03-12', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OG MARCH 1-31, 2026 REYNALDO C. MENDOZA', 'TO YVETTE', '14:25:00', '2026-03-12', '17:41:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-12 10:15:55', '2026-03-12 10:15:55'),
-(4825, '2026-03-12', 'PNP', 'PR OF MATERIALS FOR R/M - PNP AYANZA VEHICLE', 'TO JAY', '13:29:00', '2026-03-12', '17:41:00', 'Purchase Request', 2, NULL, 27250.00, '2026-03-12 10:17:04', '2026-03-12 10:17:04');
+(4825, '2026-03-12', 'PNP', 'PR OF MATERIALS FOR R/M - PNP AYANZA VEHICLE', 'TO JAY', '13:29:00', '2026-03-12', '17:41:00', 'Purchase Request', 2, NULL, 27250.00, '2026-03-12 10:17:04', '2026-03-12 10:17:04'),
+(4826, '2026-03-12', 'MO', 'AO - GRANTING HONORARIUM IN THE AMOUNT OF P2,000.00 EACH TO THE FF. RESOURCE SPEAKERS FOR THE BASIC TROUBLE SHOOTING AND CYVERSECURITY AWARENESS SEMINAR ON MARCH 25, 2026', 'TO YVETTE', '17:57:00', '2026-03-12', '18:27:00', 'Administrative Order', 9, NULL, NULL, '2026-03-16 00:08:43', '2026-03-16 00:08:43'),
+(4827, '2026-03-12', 'BAC', 'BAC - RESOLUTION NO. 059, 060, 061, 062, 063, 064, 065 & 066-S-2026', 'TO YVETTE', '17:57:00', '2026-03-12', '18:27:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-16 00:09:44', '2026-03-16 00:09:44'),
+(4828, '2026-03-16', 'MHO', 'LHB RESOLUTION NO. 003-S-2026 - REQUESTING THE SB OF CARMEN TO  REQUEST THE DOH THROUGH REGIONAL DIRECTOR', 'RETURN TO MHO', '08:45:00', '2026-03-16', '09:58:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-16 02:22:36', '2026-03-16 02:22:36'),
+(4829, '2026-03-16', 'MHO', 'LHB MINUTES LAST FEBRUARY 19, 2026 I:OOP.RS HELD @VIP ROOM', 'RETURN TO MHO', '08:45:00', '2026-03-16', '09:58:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-16 02:23:34', '2026-03-16 02:23:34'),
+(4830, '2026-03-05', 'MDRRMO', 'MINUTES OF THE 2ND MEETING FOR THE 1ST QUARTER LAST MARCH 26, 2025', NULL, '15:54:00', '2026-03-16', '10:06:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-16 05:05:13', '2026-03-16 05:05:13'),
+(4831, '2026-03-05', 'MDRRMO', 'MINUTES OF THE 3RD QUARTER MEETING LAST AUGUST 27, 2025', 'RETURN TO MDRRMO', '15:54:00', '2026-03-16', '10:06:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-16 05:06:05', '2026-03-16 05:06:05'),
+(4832, '2026-03-05', 'MDRRMO', 'EXECUTIVE ORDER - AND ORDER ESTABLISHING & OPERATIONALIZING THE EMERGENCY OPERATION CENTER & EOC ORGANIZATIONAL STRUCTURE', 'RETURN TO MDRRMO', '16:36:00', '2026-03-16', '10:38:00', 'Executive Order', 10, NULL, NULL, '2026-03-16 05:07:26', '2026-03-16 05:07:26'),
+(4833, '2026-03-05', 'MDRRMO', 'EXECUTIVE ORDER - AN ORDER CREATING THE MDRRMO CORE TEAM & TWG', 'RETURN TO MDRRMO', '16:36:00', '2026-03-16', '10:38:00', 'Executive Order', 10, NULL, NULL, '2026-03-16 05:08:19', '2026-03-16 05:08:19'),
+(4834, '2026-03-05', 'MDRRMO', 'EXECUTIVE ORDER - CREATION FOR THE MUN. EMERGENCY DISASTER RISK RESPONSE CLUSTER FOR THE ON-SCENE MGT OF NATURAL HAZARD', 'RETURN TO MDRRMO', '16:36:00', '2026-03-16', '10:38:00', 'Executive Order', 10, NULL, NULL, '2026-03-16 05:09:23', '2026-03-16 05:09:23'),
+(4835, '2026-03-05', 'HRMO', 'CONTRACT OF SERVICE FOR THE MONTH OF MARCH 1-31, 2026 - MABUHAY WATCHMAN -  RICO N. TIBAY', 'TO YVETTE', '09:22:00', '2026-03-16', '10:45:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-16 05:11:11', '2026-03-16 05:11:11'),
+(4836, '2026-03-16', 'HRMO', 'CONTRACT OF SERVICE FOR THE MONTH OF MARCH 1-31, 2026 - MABUHAY WATCHMAN - SHEENA MAE M. KINES', 'TO YVETTE', '09:22:00', '2026-03-16', '10:45:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-16 05:11:49', '2026-03-16 05:11:49'),
+(4837, '2026-03-16', 'MHO', 'CONTRACT OF SERVICE FOR THE MONTH OF MARCH 1-31,2026 - NEILYN R. KUNNARY, MD, DPSP', 'TO YVETTE', '09:22:00', '2026-03-16', '10:45:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-16 07:15:37', '2026-03-16 07:15:37'),
+(4838, '2026-03-16', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OF MARCH 1-31, 2026 - DARYL D. BERTOS', 'TO YVETTE', '09:22:00', '2026-03-16', '10:45:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-16 07:16:28', '2026-03-16 07:16:28'),
+(4839, '2026-03-16', 'MENRO', 'CONTRACT OF SERVICE FOR THE MONTH OF MARCH 1-31, 2026 - RONALD C. OMAMBAC', 'TO YVETTE', '09:22:00', '2026-03-16', '10:45:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-16 07:16:53', '2026-03-16 07:16:53'),
+(4840, '2026-03-16', 'MAGRO', 'PO - CARGOE MPC / PAYMENT OF MEALS & SNACKS FOR HATCHERY MGT MEETINGS', 'TO JAY', '09:59:00', '2026-03-16', '11:28:00', 'Purchase Order', 1, NULL, 34400.00, '2026-03-16 07:20:22', '2026-03-16 07:20:22'),
+(4841, '2026-03-16', 'GAD', 'PO - M.A.C PRINTING SERVICES / PAYMENT OF TARPULIN FOR INFORMATION DISSEMINATION ', 'TO JAY', '09:59:00', '2026-03-16', '11:28:00', 'Purchase Order', 1, NULL, 3680.00, '2026-03-16 07:21:29', '2026-03-16 07:21:29'),
+(4842, '2026-03-16', 'MHO', 'PO - CARGOE MPC / PAYMENT OF SNACKS FOR VARIOUS ACTIVITIES ', 'TO JAY', '09:59:00', '2026-03-16', '11:28:00', 'Purchase Order', 1, NULL, 12920.00, '2026-03-16 07:22:29', '2026-03-16 07:22:29'),
+(4843, '2026-03-16', 'MAGRO', 'PO - CARGOE MPC/MEALS & SNACKS FOR MAFC MEETING, BIOFERTILIZERS  & FOLIO FERTILIZER  W/DA REGION CARAVAN', 'TO JAY', '09:59:00', '2026-03-16', '11:28:00', 'Purchase Order', 1, NULL, 25800.00, '2026-03-16 07:24:27', '2026-03-16 07:24:27'),
+(4844, '2026-03-16', 'MAGRO', 'PO - CARGOE MPC / MEALS & SNACKS IEC, HYBRID SEEDS & BIOFERTILIZERS CARMEN ', 'TO JAY', '09:59:00', '2026-03-16', '11:28:00', 'Purchase Order', 1, NULL, 16700.00, '2026-03-16 07:25:39', '2026-03-16 07:25:39'),
+(4845, '2026-03-16', 'MCR', 'PO - CARGOE MPC / MEALS & SNACKS FOR CIVIL REG\'O MONTH MOBILE REG\'O, LCRO AUDIT 2026 & OTHER ACT. ', 'TO JAY', '09:59:00', '2026-03-16', '11:28:00', 'Purchase Order', 1, NULL, 19475.00, '2026-03-16 07:27:45', '2026-03-16 07:27:45'),
+(4846, '2026-03-12', 'MO', 'EXECUTIVE ORDER - IMPLEMENTING  THE RETOALED COMMUNITY SUPPORT PROGRAM & ORGANIZING  THE RCSP TEAM & CORE TEAM', 'TO SHANNEN', '18:16:00', '2026-03-16', '11:32:00', 'Executive Order', 10, NULL, NULL, '2026-03-16 07:29:15', '2026-03-16 07:29:15'),
+(4847, '2026-03-16', 'MO', 'MEMORANDUM OF UNDERSTANDING BET. DAR, LGU, BLGU OF ALEJAL & THE MINDANAO BANANA MULTI-PURPOSE COOP. (MINDCO)', 'TO MAGRO', '08:30:00', '2026-03-16', '11:27:00', 'Memorandum Order', 8, NULL, NULL, '2026-03-16 07:32:09', '2026-03-16 07:32:09'),
+(4848, '2026-03-16', 'MTO', 'BUSINESS PERMIT - NK SWEETS TALK & TREAT INC.', 'TO JAY', '14:22:00', '2026-03-16', '14:28:00', 'Business Permit', 6, NULL, NULL, '2026-03-16 07:33:05', '2026-03-16 07:33:05'),
+(4849, '2026-03-16', 'MTO', 'BUSINESS PERMIT - SANDYS PLASTICWARE PRODUCTS SHOP / SANDOR BALAYO BUKHARIE', 'TO JAY', '14:22:00', '2026-03-16', '14:42:00', 'Business Permit', 6, NULL, NULL, '2026-03-16 07:34:18', '2026-03-16 07:34:18'),
+(4850, '2026-03-16', 'MDRRMO', 'EXECUTIVE ORDER - ESTABLISHING & OPERATIMALIZING THE EOC & EOC ORGANIZATIONAL STRUCTURE', 'TO YVETTE', '13:24:00', '2026-03-16', '15:10:00', 'Executive Order', 10, NULL, NULL, '2026-03-16 07:35:25', '2026-03-16 07:35:25'),
+(4851, '2026-03-16', 'MDRRMO', 'EXECUTIVE ORDER - CREATION OF THE MUNICIPAL EMERGENCY DISASTER RISK RESPONSE CLUSTER FOR THE ON-SCENE MGT. OF NATURAL HAZARDS', 'TO YVETTE', '13:24:00', '2026-03-16', '15:30:00', 'Executive Order', 10, NULL, NULL, '2026-03-16 07:36:43', '2026-03-16 07:36:43'),
+(4852, '2026-03-16', 'MDRRMO', 'EXECUTIVE ORDER - CREATING THE MUN. DISASTER RISK REDUCTION & MANAGEMENT PLAN CORE TEAM & TWG', 'TO YVETTE', '13:24:00', '2026-03-16', '15:10:00', 'Executive Order', 10, NULL, NULL, '2026-03-16 07:37:46', '2026-03-16 07:37:46'),
+(4853, '2026-03-16', 'MO', 'ADMINISTRATIVE ORDER - AUTHORIZING & GRANTING MEAL ALLOWANCE IN THE AMOUNT OF 10, 080.00 FOR THE FF. MEMBERS OF CNHS PRUM & BUGLE CORPS', 'TO YVETTE', '13:15:00', '2026-03-16', '15:10:00', 'Administrative Order', 9, NULL, NULL, '2026-03-16 07:39:21', '2026-03-16 07:39:21'),
+(4854, '2026-03-16', 'Info', 'PR OF TARPULIN OF RECOGNITION OF CARMEN MEDALIST ATHLETE IN THE DAVRAA MEET', 'TO JAY', '09:42:00', '2026-03-16', '10:43:00', 'Purchase Request', 2, NULL, 1800.00, '2026-03-16 07:42:08', '2026-03-16 07:42:08'),
+(4855, '2026-03-16', 'BFP', 'PR OF MEALS & SNACKS FOR FIRE PREVENTION MONTH PROGRAMS & ACT', 'TO JAY', '09:42:00', '2026-03-16', '10:43:00', 'Purchase Request', 2, NULL, 77400.00, '2026-03-16 07:42:54', '2026-03-16 07:42:54'),
+(4856, '2026-03-16', 'MHO', 'PR OF WATER PAYMENT FOR PRIOR YEARS', 'TO JAY', '09:42:00', '2026-03-16', '10:43:00', 'Purchase Request', 2, NULL, 1583.00, '2026-03-16 07:43:27', '2026-03-16 07:43:27'),
+(4857, '2026-03-16', 'MEO', 'PR OF DIESEL-FUEL USED FOR 24/7 OPERATIONS', 'TO JAY', '11:45:00', '2026-03-16', '13:21:00', 'Purchase Request', 2, NULL, 499950.00, '2026-03-16 07:44:20', '2026-03-16 07:44:20'),
+(4858, '2026-03-16', 'MEO', 'PR OF DIESEL-FUEL USED FOR R/M INFRA', 'TO JAY', '11:45:00', '2026-03-16', '13:21:00', 'Purchase Request', 2, NULL, 825000.00, '2026-03-16 07:45:09', '2026-03-16 07:45:09'),
+(4859, '2026-03-16', 'MEO', 'PR OF DIESEL-FUEL TO SUPPORT THE OPERATION OF DRAINAGE SYSTEM', 'TO JAY', '11:45:00', '2026-03-16', '13:21:00', 'Purchase Request', 2, NULL, 750000.00, '2026-03-16 07:45:53', '2026-03-16 07:45:53'),
+(4860, '2026-03-16', 'MEO', 'PR OF DIESEL-FUEL USED IN THE DESILTING OF SODPUDON CREEK', 'TO JAY', '11:45:00', '2026-03-16', '13:21:00', 'Purchase Request', 2, NULL, 772500.00, '2026-03-16 07:46:40', '2026-03-16 07:46:40'),
+(4861, '2026-03-16', 'MEO', 'PR OF DIESEL-FUEL USED IN VARIOUS PUMPING STATIONS', 'TO JAY', '11:45:00', '2026-03-16', '13:21:00', 'Purchase Request', 2, NULL, 825000.00, '2026-03-16 07:47:23', '2026-03-16 07:47:23'),
+(4862, '2026-03-16', 'MTO', 'PR OF SUPPLIES FOR OFFICE USE', 'TO JAY', '11:45:00', '2026-03-16', '14:43:00', 'Purchase Request', 2, NULL, 685.00, '2026-03-16 07:48:00', '2026-03-16 07:48:00'),
+(4863, '2026-03-16', 'MO', 'EXECUTIVE ORDER - IMPLEMENTING THE RETOOLED COMMUNITY SUPPORT PROGRAM ORGANAZING THE RCSP TEAM & CORE TEAM', 'TO YVETTE', '16:35:00', '2026-03-16', '16:37:00', 'Executive Order', 10, NULL, NULL, '2026-03-16 09:59:40', '2026-03-16 09:59:40'),
+(4864, '2026-03-16', 'MHO', 'MINUTES OF LHB MEETING LAST FEBRUARY 19, 2026', 'RETURN TO MHO', '16:05:00', '2026-03-16', '16:52:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-16 10:04:02', '2026-03-16 10:04:02'),
+(4865, '2026-03-16', 'MHO', 'LHB RESOLUTION NO. 003-S-2026 - A RESOLUTION REQUESTING THE SB TO REQUEST THE DOH THROUGH REGIONAL DIRECTOR FOR HEALTH DEV\'T. FOR THE DEPLOYMENT OF A PHYSICIAN IN THE MUNICIPALITY UNDER THE DOCTORS TO THE DOCTORS TO THE BARRIOS (DTTB) PROGRAM', 'TO YVETTE', '16:14:00', '2026-03-16', '17:12:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-16 10:06:05', '2026-03-16 10:06:05'),
+(4866, '2026-03-16', 'MTO', 'BUSINESS PERMIT - D-M DRY GOODS TRADING / GERALYN QUILES TINGTING ', 'TO JAY', '16:50:00', '2026-03-16', '17:23:00', 'Business Permit', 6, NULL, NULL, '2026-03-16 10:06:52', '2026-03-16 10:06:52'),
+(4867, '2026-03-16', 'MHO', 'PR OF MEALS FOR REVIEW & ORIENTATION ON THE FOUR PILLARS OF THE BRGY. NUTRITION ACTION PLAN 2026-2026', 'TO JAY', '11:45:00', '2026-03-16', '17:38:00', 'Purchase Request', 2, NULL, 10500.00, '2026-03-16 10:08:27', '2026-03-16 10:08:27'),
+(4868, '2026-03-17', 'MTO', 'BUSINESS PERMIT - PODS - DEVICE E-CIGARETTE SHOP/DARELL LlOYD PANTALEON DIAZ', 'TO JAY', '07:35:00', '2026-03-17', '08:27:00', 'Business Permit', 6, NULL, NULL, '2026-03-17 03:42:33', '2026-03-17 03:42:33'),
+(4869, '2026-03-17', 'MDRRMO', 'EXECUTIVE ORDER - CREATING THE MDRRMP CORE TEAM & TWG IN THE MUNICIPALITY', 'RETURN TO MDRRMO', '09:09:00', '2026-03-17', '09:11:00', 'Executive Order', 10, NULL, NULL, '2026-03-17 03:44:04', '2026-03-17 03:44:04'),
+(4870, '2026-03-17', 'MDRRMO', 'EXECUTIVE ORDER - CREATION OF THE MUN. EMERGENCY DISASTER RISK RESPONSE CLUSTER FOR THE ON-SCENE MGT. NATURAL HAZARDS', 'RETURN TO MDRRMO', '09:09:00', '2026-03-17', '09:11:00', 'Executive Order', 10, NULL, NULL, '2026-03-17 03:45:31', '2026-03-17 03:45:31'),
+(4871, '2026-03-17', 'MDRRMO', 'EXECUTIVE ORDER - CREATING THE LCCAP CORE TEAM & TWG', 'RETURN TO MDRRMO', '09:09:00', '2026-03-17', '09:11:00', 'Executive Order', 10, NULL, NULL, '2026-03-17 03:46:36', '2026-03-17 03:46:36'),
+(4872, '2026-03-17', 'Info', 'PO - CARGOE / PAYMENT OF OFFICE SUPPLIES (B-DAY FOR BRGY. OFFICIALS & FUNCTIONARIES)', 'RETURN TO BACC', '07:20:00', '2026-03-17', '10:02:00', 'Purchase Order', 1, NULL, 9450.00, '2026-03-17 03:49:09', '2026-03-17 03:49:09'),
+(4873, '2026-03-17', 'GSO', 'PO - 3 LITOS STORE / PAYMENT OF OTHER SUPPLIES FOR MUSLIM COMMUNITY', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 33720.00, '2026-03-17 05:03:27', '2026-03-17 05:03:27'),
+(4874, '2026-03-17', 'MSWDO', 'PO - CARGOE MPC / PAYMENT OF MEALS & SNACKS FOR CONFERENCE W/NUT\'L - AGENCIES', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 16500.00, '2026-03-17 05:04:38', '2026-03-17 05:04:38'),
+(4875, '2026-03-17', 'MSWDO', 'PO - CARGOE MPC / PAYMENT OF ROASTED PIG FOR COURTESY CALL OF DSWD REG\'L CIRECTOR ', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 7600.00, '2026-03-17 05:06:00', '2026-03-17 05:06:00'),
+(4876, '2026-03-17', 'GSO', 'PO - PHOTODYNAMIC PHOTOCOPIER MACHINE, SUPPLIES & SERVICES / PAYMENT OF SUPPLIES FOR 1ST QUARTER ', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 6500.00, '2026-03-17 05:07:18', '2026-03-17 05:07:18'),
+(4877, '2026-03-17', 'MCR', 'PO - M.A.C PRINTING SERVICES / PAYMENT OF TARPULIN FOR CIVIL REGISTRATION MONTH ', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 3720.00, '2026-03-17 05:08:23', '2026-03-17 05:08:23'),
+(4878, '2026-03-17', 'SBO', 'PO - NANAY ABETH CATERING SERVICE / PAYMENT OF MEALS & SNACKS FOR VARIOUS COMMITTEE MTGS', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 107100.00, '2026-03-17 05:09:19', '2026-03-17 05:09:19'),
+(4879, '2026-03-17', 'MSWDO ', 'PO - CARGOE MPC / PAYMENT OF SNACKS FOR MONTHLY ORIENTATION ON SOLO PARENT MEMBERSHIP', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 8500.00, '2026-03-17 05:10:43', '2026-03-17 05:10:43'),
+(4880, '2026-03-17', 'MSWDO ', 'PO - CARGOE MPC / PAYMENT OF MEALS & SNACKS FOR COURTSEY CALL OF DSWDO REG\'L DIRECTOR', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 38000.00, '2026-03-17 05:11:49', '2026-03-17 05:11:49'),
+(4881, '2026-03-17', 'MSWDO ', 'PO - CARGOE MPC / PAYMENT OF MEALS & SNACKS FOR OREINTATION ON BADAC PERFORMANCE AUDIT ASSESSMENT', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 19800.00, '2026-03-17 05:13:00', '2026-03-17 05:13:00'),
+(4882, '2026-03-17', 'HRMO', 'PO - PLDT INC. / PAYMENT OF ADDITIONAL INTERNET SUBSCRIPTION FOR THE MONTH OF MARCH, 2026', 'TO YVETTE', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 1680.00, '2026-03-17 05:14:01', '2026-03-17 05:14:01'),
+(4883, '2026-03-17', 'MENRO', 'PO - CARGOE MPC / PAYMENT OF MEALS & SNACKS FOR IEC ON ESWM OR RA 9003 FOR ALL VENDORS ', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 18600.00, '2026-03-17 05:15:01', '2026-03-17 05:15:01'),
+(4884, '2026-03-17', 'MSWDO', 'PO - CARGOE MPC / PAYMENT OF SNACKS FOR ORIENTATION ON DRUG FREE WORK PLACE W/DEP\'T HEADS & SECTION HEADS ', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 3000.00, '2026-03-17 05:16:02', '2026-03-17 05:16:02'),
+(4885, '2026-03-17', 'GSO', 'PO - CARGOE MPC / PAYMENT OF OTHER SUPPLIES (OMA, MBO, MTO & MO)', 'TO JAY', '07:20:00', '2026-03-17', '12:00:00', 'Purchase Order', 1, NULL, 51790.00, '2026-03-17 05:24:28', '2026-03-17 05:24:28'),
+(4886, '2026-03-17', 'MDRRMO', 'PO - CARGOE MPC / PAYMENT OF PREPOSITIONING OF FOODS FOR THE EVACUEES DURING EMERGENCY ', 'RETURN TO BAC', '12:00:00', '2026-03-17', '13:23:00', 'Purchase Order', 1, NULL, 43200.00, '2026-03-17 05:25:46', '2026-03-17 05:25:46'),
+(4887, '2026-03-17', 'MTO', 'BUSINESS PERMIT - LAWRENCE CONSUMER STORE / DARYL ALEGADO OLIVERIO', 'JAY', '13:04:00', '2026-03-17', '13:23:00', 'Business Permit', 6, NULL, NULL, '2026-03-17 05:27:04', '2026-03-17 05:27:04'),
+(4888, '2026-03-17', 'GSO', 'PO - CARGOE MPC / PAYMENT OF OTHER SUPPLIES (OMA, MBO, MTO & MO)', 'RETURN TO BAC', '13:16:00', '2026-03-17', '14:03:00', 'Purchase Order', 1, NULL, 57790.00, '2026-03-17 07:17:23', '2026-03-17 07:17:23'),
+(4889, '2026-03-16', 'MHO', 'CONTRACT OF SERVICE FOR THE MONTH OF MARCH 1-31, 2026 - CELYROSE R. CAGAS', 'TO YVETTE', '17:17:00', '2026-03-17', '14:58:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-17 07:18:42', '2026-03-17 07:18:42'),
+(4890, '2026-03-17', 'Info', 'PO - CARGOE MPC / PAYMENT OF OFFICE SUPPLIES USE FOR B-DAY CARDS FOR BRGY. OFFICIALS, FUNCTIONARIES & DIGNITARIES', 'TO JAY', '07:20:00', '2026-03-17', '15:02:00', 'Purchase Order', 1, NULL, 9450.00, '2026-03-17 07:20:32', '2026-03-17 07:20:32'),
+(4891, '2026-03-17', 'MSWDO', 'PO - CARGOE MPC / PAYMENT OF MEALS & SNACKS FOR WORKSHOP ON COMPILATION OF DOCUMENT FOR DOH ACCREDITATION ', 'TO JAY', '07:20:00', '2026-03-17', '15:02:00', 'Purchase Order', 1, NULL, 19800.00, '2026-03-17 07:21:35', '2026-03-17 07:21:35'),
+(4892, '2026-03-17', 'MSWDO', 'PO - CARGOE MPC / PAYMENT OF MEALS & SNACKS FOR ORIENTATION FOR THE LOCAL AUDIT OF BRGY. ANTI-DRUG ABUSE COUNCIL W/DILG, PDEA & OTHERS (COMMITTEE ON PEACE & ORDER )', 'TO JAY', '07:20:00', '2026-03-17', '15:02:00', 'Purchase Order', 1, NULL, 33000.00, '2026-03-17 07:22:49', '2026-03-17 07:22:49'),
+(4893, '2026-03-17', 'GSO', 'PO - RJF ENTERPRISES / BILL PAYMENT (MOBILE) FOR THE FEB. & MARCH 2026', 'RETURN TO GSO', '14:15:00', '2026-03-17', '15:01:00', 'Purchase Order', 1, NULL, 10300.00, '2026-03-17 07:24:02', '2026-03-17 07:24:02'),
+(4894, '2026-03-17', 'MO', 'PO - MAXYSE FOOD SERVICES/PAYMENT OF MEALS FOR MAYOR\'S OFFICE VISITORS W/ASIAN DEVELOPMENT BANK', 'TO YVETTE', '14:15:00', '2026-03-17', '15:01:00', 'Purchase Order', 1, NULL, 9459.65, '2026-03-17 07:25:42', '2026-03-17 07:25:42'),
+(4895, '2026-03-17', 'MTO', 'BUSINESS PERMIT - AVL UPHOLCTERY SHOP/ALLYNEATH JIA GALES EMAYLAN ', 'TO JAY', '15:33:00', '2026-03-17', '15:55:00', 'Business Permit', 6, NULL, NULL, '2026-03-17 08:30:15', '2026-03-17 08:30:15'),
+(4896, '2026-03-17', 'MTO', 'BUSINESS PERMIT - A & B GADGET SHOP / ANNA BIANCA NUFABLE  REOCSON', 'TO JAY', '16:13:00', '2026-03-17', '16:39:00', 'Business Permit', 6, NULL, NULL, '2026-03-17 09:36:34', '2026-03-17 09:36:34'),
+(4897, '2026-03-17', 'MTO', 'BUSINESS PERMIT - AXL UPHOLSTERY SHOP / ALLYHEATH JIA GALES EMOYLAN ', 'TO JAY', '17:03:00', '2026-03-17', '17:04:00', 'Business Permit', 6, NULL, NULL, '2026-03-17 09:37:45', '2026-03-17 09:37:45'),
+(4898, '2026-03-17', 'GSO', 'PO - CARGOE MPC / PAYMENT OF OTHER SUPPLIES FOR VARIOUS OFFICES (OMA, MBO, MTO & MO)', 'TO JAY', '13:16:00', '2026-03-17', '17:09:00', 'Purchase Order', 1, NULL, 51790.00, '2026-03-17 09:39:22', '2026-03-17 09:39:22'),
+(4899, '2026-03-17', 'MO', 'AO - AUTHORIZING & GRANTING MONTHLY ALLOWANCE IN THE AMOUNT OF P7, 000.00 TO MR. GEORGE JURIS I. CHING ', 'TO SHANNEN', '14:59:00', '2026-03-17', '17:12:00', 'Administrative Order', 9, NULL, NULL, '2026-03-17 09:40:40', '2026-03-17 09:40:40'),
+(4900, '2026-03-17', 'MO', 'AO - AUTHORIZING & GRANTING MONTHLY ALLOWANCE IN THE AMOUNT OF P5, 000.00 TO MS. ALMA P. GONDA', 'TO SHANNEN', '14:59:00', '2026-03-17', '17:12:00', 'Administrative Order', 9, NULL, NULL, '2026-03-17 09:41:37', '2026-03-17 09:41:37'),
+(4901, '2026-03-17', 'MO', 'AO - AN ORDER AUTHORIZING & GRANTING MONTHLY ALLOWANCE IN THE AMOUNT OF P7,000.00', 'TO YVETTE', '15:53:00', '2026-03-17', '17:33:00', 'Administrative Order', 9, NULL, NULL, '2026-03-17 09:45:14', '2026-03-17 09:45:14'),
+(4902, '2026-03-17', 'MO', 'AO - AN ORDER AUTHORIZING & GRANTING MONTHLY ALLOWANCE IN THE AMOUNT OF P5,000.00 TO MS. ALMA P. GONDA', 'TO YVETTE', '15:53:00', '2026-03-17', '17:33:00', 'Administrative Order', 9, NULL, NULL, '2026-03-17 09:45:45', '2026-03-17 09:45:45'),
+(4903, '2026-03-17', 'HRMO/COA', 'CONTRACT OF SERVICE FOR THE MONTH OF MARCH 1-31, 2026 EL JOY A. COYOS', 'TO YVETTE', '14:43:00', '2026-03-17', '17:33:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-17 09:46:46', '2026-03-17 09:46:46'),
+(4904, '2026-03-17', 'DILG', 'CONTRACT OF SERVICE FOR THE MONTH OF MARCH 1-31, 2026 - ERICK M. CANEDOS', 'TO YVETTE', '14:43:00', '2026-03-17', '17:33:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-17 09:47:26', '2026-03-17 09:47:26'),
+(4905, '2026-03-17', 'GSO', 'PO - RJF ENTERPRISE / PAYMENT OF MOBILE EXPENSES FOR THE MONTH OF FEB-MARCH,2026', 'TO YVETTE', '14:43:00', '2026-03-17', '17:33:00', 'Purchase Order', 1, NULL, 10300.00, '2026-03-17 09:48:12', '2026-03-17 09:48:12'),
+(4906, '2026-03-17', 'MO', 'PO - MAXYSE FOOD SERVICES / MEALS FOR MAYORS OFFICE VISITOR ASIAN DEVELOPMENT BANK', 'TO YVETTE', '14:43:00', '2026-03-17', '17:33:00', 'Purchase Order', 1, NULL, 9459.65, '2026-03-17 09:48:55', '2026-03-17 09:48:55'),
+(4907, '2026-03-17', 'BAC ', 'CONTRACT OF SUPPLY OF LABOR, MATERIAL, TOOL & EQUIPMENT NECESSARY FOR THE PROVISION OF RENEWABLE ENERGY-BASED ELECTRIFICATION', 'RETURN BAC', '11:20:00', '2026-03-17', '17:57:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-17 23:05:51', '2026-03-17 23:05:51'),
+(4908, '2026-03-17', 'MDRRMO', 'MINUTES OF MDRRMC MEETING LAST MARCH 26, 2025', 'TO YVETTE', '20:27:00', '2026-03-17', '08:11:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-18 03:07:24', '2026-03-18 03:10:14'),
+(4909, '2026-03-18', 'MDRRMO', 'MINUTES OF MDRRMC MEETING LAST AUGUST 27, 2025', 'TO YVETTE', '20:27:00', '2026-03-17', '08:11:00', 'Minutes and Resolution', 11, NULL, NULL, '2026-03-18 03:08:20', '2026-03-18 03:10:00'),
+(4910, '2026-03-18', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - BERNARD B. PANAGUITON', 'TO YVETTE', '08:15:00', '2026-03-17', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:09:50', '2026-03-18 03:09:50'),
+(4911, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - JESSE ERL T. MILLER', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:10:39', '2026-03-18 03:10:52'),
+(4912, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - MELCHOR B. VALLE', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:11:15', '2026-03-18 03:11:15'),
+(4913, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - LEONARDO L. NAVARRA JR.', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:11:40', '2026-03-18 03:11:40'),
+(4914, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - NARCISO JR. L. TANGARO', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:12:06', '2026-03-18 03:12:06'),
+(4915, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - JEORGE M. IGNAS', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:12:24', '2026-03-18 03:12:24'),
+(4916, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - DINO F. GEORFO', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:12:55', '2026-03-18 03:12:55'),
+(4917, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - EDUARDO V. FABRIGAR', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:13:18', '2026-03-18 03:13:18'),
+(4918, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - JOEL S. DUMALAG', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:13:38', '2026-03-18 03:13:38'),
+(4919, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - HERMOGENES U. CONANAN JR.', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:14:09', '2026-03-18 03:14:09'),
+(4920, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - CARLOS M. CALULONG', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:14:31', '2026-03-18 03:14:31'),
+(4921, '2026-03-17', 'MO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - VINCENT L. BABANTO', 'TO YVETTE', '08:15:00', '2026-03-18', '08:11:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 03:14:51', '2026-03-18 03:14:51'),
+(4922, '2026-03-18', 'MTO', 'BUSINESS PERMIT - 5MF CANTIBIROS SARI-SARI STORE / FEBIE DELFIN CANTIBIROS', 'TO JAY', '08:14:00', '2026-03-18', '08:30:00', 'Business Permit', 6, NULL, NULL, '2026-03-18 03:15:48', '2026-03-18 03:15:48'),
+(4923, '2026-03-18', 'MAGRO', 'MEMEORANDUM OF UNDERSTANDING BET. DAR, LGU, BLGU ALEJAL & MINDANAO BANANA MULTIPURPOSE COOPERATION (MINDCO) (TRANSFORMING ARBS INTO FORMER-ENTREPRENEURS)', 'RETURN TO MAGRO', '08:14:00', '2026-03-18', '08:30:00', 'Memorandum Order', 8, NULL, NULL, '2026-03-18 03:19:17', '2026-03-18 03:19:17'),
+(4924, '2026-03-18', 'MDRRMO', 'PO - CARGOE MPC / PAYMENT OF PREPOSITIONING OF FOODS FOR THE EVACUES DURING EMERGENCY & DISASTER ', 'TO JAY', '10:10:00', '2026-03-18', '14:03:00', 'Purchase Order', 1, NULL, 43200.00, '2026-03-18 07:34:31', '2026-03-18 07:34:31'),
+(4925, '2026-03-18', 'GSO/MTO', 'PO - MING COMPUTER SOLUTIONS / PAYMENT OF DUAL BAND WI-FI, DANGLE ', 'TO JAY', '08:13:00', '2026-03-18', '14:03:00', 'Purchase Order', 1, NULL, 380.00, '2026-03-18 07:36:18', '2026-03-18 07:36:18'),
+(4926, '2026-03-18', 'GSO/MTO', 'PO - M.A.C PRINTING SERVICES / PAYMENT OF TARPULIN FOR BRGY RPT COLLECTION', 'TO JAY', '08:13:00', '2026-03-18', '14:03:00', 'Purchase Order', 1, NULL, 480.00, '2026-03-18 07:37:32', '2026-03-18 07:37:32'),
+(4927, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - GASPER P. LlUVIDO', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:40:53', '2026-03-18 07:40:53'),
+(4928, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - JAYA KATRINA AVILA', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:41:16', '2026-03-18 07:41:16'),
+(4929, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - CARL BRUZ A. CAGAPE', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:41:36', '2026-03-18 07:41:36'),
+(4930, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - MARPHY O. SALVANA', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:41:57', '2026-03-18 07:41:57'),
+(4931, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - MIA JOY B. MONTANA', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:42:22', '2026-03-18 07:42:22'),
+(4932, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - NASER C. BANGKILA', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:42:42', '2026-03-18 07:42:42'),
+(4933, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - ADDIE LYNA L. DE RAMOS', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:43:00', '2026-03-18 07:43:00'),
+(4934, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - BABY CHRISTINE S. MAGARZO', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:43:21', '2026-03-18 07:43:21'),
+(4935, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - RYAN M. LOURITO', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:43:42', '2026-03-18 07:43:42'),
+(4936, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - ANGELIN L. SARABOSING', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:44:05', '2026-03-18 07:44:05'),
+(4937, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - ERVIN D. DAMAULAO', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:44:24', '2026-03-18 07:44:24'),
+(4938, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - DENNIS Z. PUNO', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:44:46', '2026-03-18 07:44:46'),
+(4939, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - MARILOU S. DECENILLA', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:45:08', '2026-03-18 07:45:08'),
+(4940, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - WILBERT A. TINO', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:45:28', '2026-03-18 07:45:28'),
+(4941, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - JAYSON M. CASTRO', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:45:51', '2026-03-18 07:45:51'),
+(4942, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - CHRISTIAN DAVE I. SEPULVEDA', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:46:15', '2026-03-18 07:46:15'),
+(4943, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - RONNIE Y. SAMULDE', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:46:41', '2026-03-18 07:46:41'),
+(4944, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - MANUELITO', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:47:00', '2026-03-18 07:47:00'),
+(4945, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - RAMEL C. DAPITON', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:47:18', '2026-03-18 07:47:18'),
+(4946, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - LARRY D. SANTOS', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:47:35', '2026-03-18 07:47:35'),
+(4947, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - PATRICK P. COYOCA', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:47:55', '2026-03-18 07:47:55'),
+(4948, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - NELSON V. MACADAY', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:48:18', '2026-03-18 07:48:18'),
+(4949, '2026-03-18', 'MEO', 'RUFINO B. PILOTOS', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:48:52', '2026-03-18 07:48:52'),
+(4950, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - JONNIT D. BERGATIN', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:49:19', '2026-03-18 07:49:19'),
+(4951, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - JAYSON L. ERISARA', 'TO YVETTE', '09:34:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:49:39', '2026-03-18 07:49:39'),
+(4952, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - ZENAIDA C. JOSOL', 'BLT', '07:45:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:50:02', '2026-03-18 07:50:59'),
+(4953, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - ESPINIDION D. POQUITA', 'BLT', '07:45:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:50:44', '2026-03-18 07:50:44'),
+(4954, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - ELENA P. BALASE', 'BLT', '07:45:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:51:21', '2026-03-18 07:51:21'),
+(4955, '2026-03-18', 'MEO', 'CONTRACT OF SERVICES FOR THE MONTH OF MARCH 1-31, 2026 - GIDEON M. QUIAS', 'BLT', '07:45:00', '2026-03-18', '14:16:00', 'Contract Of Service', 5, NULL, NULL, '2026-03-18 07:51:41', '2026-03-18 07:51:41'),
+(4956, '2026-03-18', 'MTO', 'BUSINESS PERMIT - DAVID CULL LAYER LIVESTONE TRADING / DAVID ESPINOZA LOBO JR', 'TO JAY', '12:00:00', '2026-03-18', '14:54:00', 'Business Permit', 6, NULL, NULL, '2026-03-18 07:52:49', '2026-03-18 07:52:49'),
+(4957, '2026-03-18', 'Nutrition', 'PR OF MEALS FOR PPAN EVAL. ON APRIL 2026', 'TO JAY', '09:38:00', '2026-03-18', '14:03:00', 'Purchase Request', 2, NULL, 10500.00, '2026-03-18 07:53:57', '2026-03-18 07:53:57'),
+(4958, '2026-03-18', 'MDRRMO', 'PR OF MEALS & SNACKS FOR MDRRMC MEETING', 'TO JAY', '14:54:00', '2026-03-18', '16:01:00', 'Purchase Request', 2, NULL, 35000.00, '2026-03-18 08:40:26', '2026-03-18 08:40:26'),
+(4959, '2026-03-18', 'MDRRMO', 'PR OF RICE FOR PREPOSITIONING OF FOOD ITEMS UNDER OPERATIONALIZATION OF 24/7 OPERATION', 'TO JAY', '14:54:00', '2026-03-18', '16:01:00', 'Purchase Request', 2, NULL, 540000.00, '2026-03-18 08:41:34', '2026-03-18 08:41:34'),
+(4960, '2026-03-18', 'MSWDO', 'PR OF MEALS & SNACKS FOR MEETING & WORKSHOP OF BRGY. SECRETARIES & BRR IS FOR UPDATING OF KABAHAGI DATA MANAGEMENT ', 'C/O MSWDO', '16:17:00', '2026-03-18', '16:21:00', 'Purchase Request', 2, NULL, 21000.00, '2026-03-18 08:43:11', '2026-03-18 08:43:11'),
+(4961, '2026-03-18', 'MSWDO', 'PR OF MEALS & SNACKS FOR BAYANIHAN SIM PROJECT', 'C/O MSWDO', '16:17:00', '2026-03-18', '16:21:00', 'Purchase Request', 2, NULL, 9600.00, '2026-03-18 08:43:57', '2026-03-18 08:43:57');
 
 -- --------------------------------------------------------
 
@@ -4977,23 +5099,19 @@ INSERT IGNORE INTO `document_logs` (`id`, `date_received`, `office`, `particular
 -- Table structure for table `document_types`
 --
 
-CREATE TABLE IF NOT EXISTS `document_types` (
+CREATE TABLE `document_types` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL,
   `sort_order` int(11) NOT NULL DEFAULT 0,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uniq_document_types_name` (`name`),
-  KEY `idx_document_types_active` (`is_active`),
-  KEY `idx_document_types_sort` (`sort_order`)
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `document_types`
 --
 
-INSERT IGNORE INTO `document_types` (`id`, `name`, `sort_order`, `is_active`, `created_at`) VALUES
+INSERT INTO `document_types` (`id`, `name`, `sort_order`, `is_active`, `created_at`) VALUES
 (1, 'Purchase Order', 10, 1, '2026-02-18 01:26:51'),
 (2, 'Purchase Request', 20, 1, '2026-02-18 01:26:51'),
 (3, 'Feedback Form Monitored', 30, 1, '2026-02-18 01:26:51'),
@@ -5018,7 +5136,7 @@ INSERT IGNORE INTO `document_types` (`id`, `name`, `sort_order`, `is_active`, `c
 -- Table structure for table `other_documents`
 --
 
-CREATE TABLE IF NOT EXISTS `other_documents` (
+CREATE TABLE `other_documents` (
   `id` int(11) NOT NULL,
   `date_received` date NOT NULL,
   `office` varchar(150) NOT NULL,
@@ -5031,18 +5149,14 @@ CREATE TABLE IF NOT EXISTS `other_documents` (
   `other_document_type` varchar(150) NOT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `idx_date_received` (`date_received`),
-  KEY `idx_office` (`office`),
-  KEY `idx_other_document_type` (`other_document_type`)
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `other_documents`
 --
 
-INSERT IGNORE INTO `other_documents` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
+INSERT INTO `other_documents` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
 (2, '2026-02-02', 'MCR', 'Erickson C. Abrin', 'TO YVETTE', '10:29:00', '2026-02-02', '12:54:00', 'Other documents', 'MTOP', NULL, '2026-02-18 03:15:04', '2026-02-18 03:15:04'),
 (3, '2026-02-02', 'MEO', 'Engr. Orville F. Cabanilla - Final Inspection - Brgy. Bldg. Phase I', 'TO YVETTE', '14:23:00', '2026-02-02', '15:48:00', 'Other documents', 'LETTER TO', NULL, '2026-02-18 03:20:18', '2026-02-18 03:20:18'),
 (4, '2026-02-02', 'MEO', 'Engr. Jones D. Lindo - Improvement of Farm to Market Road', 'TO YVETTE', '14:23:00', '2026-02-02', '15:48:00', 'Other documents', 'LETTER TO', NULL, '2026-02-18 03:21:28', '2026-02-18 03:21:28'),
@@ -5232,7 +5346,7 @@ INSERT IGNORE INTO `other_documents` (`id`, `date_received`, `office`, `particul
 (189, '2026-03-03', 'HRMO', 'CERTIFICATE OF RECOGNITION FOR HAVING RENDERED TEN (10) YEARS OF CONTINUOUS & SATISFACTORY SERVICE IN THE GOVERNMENT TO WIT - RJAMES T. MANGLALAN', 'TO YVETTE', '16:04:00', '2026-03-04', '08:24:00', 'Other documents', 'Certificate of Recognition', NULL, '2026-03-04 01:13:20', '2026-03-04 01:13:20'),
 (190, '2026-03-03', 'HRMO', 'CERTIFICATE OF RECOGNITION FOR HAVING RENDERED TEN (10) YEARS OF CONTINUOUS & SATISFACTORY SERVICE IN THE GOVERNMENT TO WIT - MAYLYN A. LOYLOY', 'TO YVETTE', '16:04:00', '2026-03-04', '08:24:00', 'Other documents', 'Certificate of Recognition', NULL, '2026-03-04 01:13:41', '2026-03-04 01:13:41'),
 (191, '2026-03-03', 'HRMO', 'CERTIFICATE OF RECOGNITION FOR HAVING RENDERED TEN (10) YEARS OF CONTINUOUS & SATISFACTORY SERVICE IN THE GOVERNMENT TO WIT - DWIGHT ANGELO Y. BUEN', 'TO YVETTE', '16:04:00', '2026-03-04', '08:24:00', 'Other documents', 'Certificate of Recognition', NULL, '2026-03-04 01:14:03', '2026-03-04 01:14:03');
-INSERT IGNORE INTO `other_documents` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
+INSERT INTO `other_documents` (`id`, `date_received`, `office`, `particulars`, `remarks`, `time_in`, `date_out`, `time_out`, `document_type`, `other_document_type`, `amount`, `created_at`, `updated_at`) VALUES
 (192, '2026-03-03', 'HRMO', 'CERTIFICATE OF RECOGNITION FOR HAVING RENDERED TEN (10) YEARS OF CONTINUOUS & SATISFACTORY SERVICE IN THE GOVERNMENT TO WIT - ALAN B. VASQUEZ ', 'TO YVETTE', '16:04:00', '2026-03-04', '08:24:00', 'Other documents', 'Certificate of Recognition', NULL, '2026-03-04 01:14:25', '2026-03-04 01:14:25'),
 (193, '2026-03-03', 'HRMO', 'CERTIFICATE OF RECOGNITION FOR HAVING RENDERED TEN (10) YEARS OF CONTINUOUS & SATISFACTORY SERVICE IN THE GOVERNMENT TO WIT - MELODY B. YAP', 'TO YVETTE', '16:04:00', '2026-03-04', '08:24:00', 'Other documents', 'Certificate of Recognition', NULL, '2026-03-04 01:14:48', '2026-03-04 01:14:48'),
 (194, '2026-03-03', 'HRMO', 'CERTIFICATE OF RECOGNITION FOR HAVING RENDERED TEN (10) YEARS OF CONTINUOUS & SATISFACTORY SERVICE IN THE GOVERNMENT TO WIT - LIEZEL A. HORCERADA', 'TO YVETTE', '16:04:00', '2026-03-04', '08:24:00', 'Other documents', 'Certificate of Recognition', NULL, '2026-03-04 01:15:20', '2026-03-04 01:15:20'),
@@ -5353,7 +5467,31 @@ INSERT IGNORE INTO `other_documents` (`id`, `date_received`, `office`, `particul
 (310, '2026-03-12', 'DOTR', 'LETTER TO HON. FRANCIS M. CASTILLA - REQUESTER FOR COOPERATION  OF YOUR OFFICE IN THE FACILITATING W/ CONCERNED BRGYS. REGARDING RAILWAY', 'TO YVETTE', '15:33:00', '2026-03-12', '16:19:00', 'Other documents', 'Request Letter', NULL, '2026-03-12 08:37:40', '2026-03-12 08:37:40'),
 (311, '2026-03-12', 'DOTR', 'LETTER TO HON. MONHAMMAD ALYASA G. MACUD - REQUESTER FOR COOPERATION  OF YOUR OFFICE IN THE FACILITATING W/ CONCERNED BRGYS. REGARDING RAILWAY', 'TO YVETTE', '15:33:00', '2026-03-12', '16:19:00', 'Other documents', 'Request Letter', NULL, '2026-03-12 08:38:13', '2026-03-12 08:38:13'),
 (312, '2026-03-12', 'DOTR', 'LETTER TO HON. JESSE DWIGHT D. DIOCARES - REQUESTER FOR COOPERATION  OF YOUR OFFICE IN THE FACILITATING W/ CONCERNED BRGYS. REGARDING RAILWAY', 'TO YVETTE', '15:33:00', '2026-03-12', '16:19:00', 'Other documents', 'Request Letter', NULL, '2026-03-12 08:38:40', '2026-03-12 08:38:40'),
-(313, '2026-03-12', 'DOTR', 'LETTER TO HON. LEONILA L. DEVILLERES - REQUESTER FOR COOPERATION  OF YOUR OFFICE IN THE FACILITATING W/ CONCERNED BRGYS. REGARDING RAILWAY', 'TO YVETTE', '15:33:00', '2026-03-12', '16:19:00', 'Other documents', 'Request Letter', NULL, '2026-03-12 08:39:15', '2026-03-12 08:39:15');
+(313, '2026-03-12', 'DOTR', 'LETTER TO HON. LEONILA L. DEVILLERES - REQUESTER FOR COOPERATION  OF YOUR OFFICE IN THE FACILITATING W/ CONCERNED BRGYS. REGARDING RAILWAY', 'TO YVETTE', '15:33:00', '2026-03-12', '16:19:00', 'Other documents', 'Request Letter', NULL, '2026-03-12 08:39:15', '2026-03-12 08:39:15'),
+(314, '2026-03-16', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - LAVRADOR ERNESTO JR.', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:12:57', '2026-03-16 02:12:57'),
+(315, '2026-03-16', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - COLITA JESUS N.', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:13:21', '2026-03-16 02:13:21'),
+(316, '2026-03-16', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - CATAYAS MELINDA', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:13:39', '2026-03-16 02:13:39'),
+(317, '2026-03-16', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - EGONIA MARK JOSEPH I.', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:14:09', '2026-03-16 02:14:09'),
+(318, '2026-03-16', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - FAMELIZA JEHSON E.', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:14:38', '2026-03-16 02:14:38'),
+(319, '2026-03-16', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - BONGAY RUDIE Y.', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:15:00', '2026-03-16 02:15:00'),
+(320, '2026-03-16', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - MENDOZA RODHELLE Y.', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:15:24', '2026-03-16 02:15:24'),
+(321, '2026-03-16', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - MUYCO ROMEO', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:15:48', '2026-03-16 02:15:48'),
+(322, '2026-03-12', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - BINOBO ROSELYN G.', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:16:08', '2026-03-16 02:17:09'),
+(323, '2026-03-12', 'Brgy. San Isidro', 'SALN OF BRGY. OFFICIALS - MOLINA APRIL JANE P.', NULL, '07:00:00', '2026-03-16', '08:30:00', 'Other documents', 'SALN', NULL, '2026-03-16 02:16:27', '2026-03-16 02:16:55'),
+(324, '2026-03-16', 'MO', 'LETTER TO THE PRES. - THRU: HON. ROLANDO U. TOLEDO - TRAVEL OF FINANCIAL ASSISTANCE TO LGU (LGSF FA)', 'TO YVETTE', '08:15:00', '2026-03-16', '09:15:00', 'Other documents', 'Request Letter', NULL, '2026-03-16 02:18:38', '2026-03-16 02:18:38'),
+(325, '2026-03-16', 'IT', 'PROJECT PROPOSAL FOR ESTABLISH MENT OF DEDICATE ICT DATA CENTER & COMPREHENSIVE FIBER OPTIC SOFTWARE & HARDWARE NETWORK FEATURES, CCTV SYSTEM UPGRADE & BRGY. CONNECTIVITY', 'TO YAN2', '08:15:00', '2026-03-16', '09:52:00', 'Other documents', 'Project Proposal', NULL, '2026-03-16 02:20:09', '2026-03-16 02:20:09'),
+(326, '2026-03-16', 'MHO', 'LETTER TO ALFREDO A. LACERONA MD- D REQUESTING FOR A RESOURCE SPEAKER FOR RABIES AWARENESS ACTIVITY', 'RETRUN TO MHO', '08:45:00', '2026-03-16', '09:58:00', 'Other documents', 'Request Letter', NULL, '2026-03-16 02:21:29', '2026-03-16 02:21:29'),
+(327, '2026-03-16', 'MO', 'LETTER TO THE PRES. THRU - HON ROLANDO U. TOLEDO > TO AVAIL OF FINANCIAL ASSISTANCE (LG SF-FA TO LGU)', 'TO YVETTE', '10:45:00', '2026-03-16', '10:45:00', 'Other documents', 'Request Letter', NULL, '2026-03-16 07:18:38', '2026-03-16 07:18:38'),
+(328, '2026-03-12', 'Brgy. San Isidro', 'SAL\'N OF ROMEO MUYCO FOR DECEMBER 31, 2024', 'TO RYAN', '14:44:00', '2026-03-16', '11:37:00', 'Other documents', 'SALN', NULL, '2026-03-16 07:30:34', '2026-03-16 07:30:34'),
+(329, '2026-03-16', 'MSWDO', 'LETTER TO MAYOR BAHAGUE FOR THE UPCOMING IMPLEMENTATION OF THE BAYANIHAN SIM PROJECT TO ELIGIBLE 4PS FAMILIES ', 'FORWARD TO MSWDO', '15:00:00', '2026-03-16', '15:02:00', 'Other documents', 'Request Letter', NULL, '2026-03-16 07:40:50', '2026-03-16 07:40:50'),
+(330, '2026-03-16', 'MASSO', 'PERMISSION TO LEAVE OFFICIAL STATION TO RICHMONDE EASTWOOD HOTEL QUEZON CITY OF ENGR. GLENN C. INSO', NULL, '13:54:00', '2026-03-16', '16:37:00', 'Other documents', 'Permission to Leave', NULL, '2026-03-16 10:01:06', '2026-03-16 10:01:06'),
+(331, '2026-03-16', 'MSWDO', 'LETTER TO BRYAN O. DALID, MD, FPCS, FPALTS, FSOSP ENDORSEMENT OF THE LGU\'S OFFICERS AT THE DAVAO REGIONAL MEDICAL CENTER ', 'TO YVETTE', '13:54:00', '2026-03-16', '16:45:00', 'Other documents', 'Request Letter', NULL, '2026-03-16 10:02:51', '2026-03-16 10:02:51'),
+(332, '2026-03-17', 'HRMO', 'LETTER TO JAY S. CARUZ - INFORMING THAT THE MOA BETWEEN KING COOP & LGU EXPIRED LAST OCTOBER 2025', 'TO JAY(FOR MAAM ERLINDA)', '09:09:00', '2026-03-17', '09:13:00', 'Other documents', 'Request Letter', NULL, '2026-03-17 03:47:43', '2026-03-17 03:47:43'),
+(333, '2026-03-17', 'Brgy. Cebulano', 'TRAVEL ORDER OF HON. JERSON R. TACMAY TO ATTEND THE 3RD PROV\'L CONGRESS LIGA NG MGA BARANGAY ON MAR 16-18, 2026', 'TO YVETTE', '15:53:00', '2026-03-17', '17:33:00', 'Other documents', 'Travel Order', NULL, '2026-03-17 09:43:09', '2026-03-17 09:43:09'),
+(334, '2026-03-17', 'Brgy. Gudalupe', 'TRAVEL ORDER OF HON. GIRLIE P. SANTILLAN TO ATTEND THE 3RD PROV\'L CONGRESS LIGA  NG MGA BARANGAY ON MAR 16-18, 2026', 'TO YVETTE', '15:53:00', '2026-03-17', '17:33:00', 'Other documents', 'Travel Order', NULL, '2026-03-17 09:44:24', '2026-03-17 09:44:24'),
+(335, '2026-03-18', 'MO', 'AUTHORITY TO TRAVEL OF MS. THEREZA L. ALADAD ON MARCH 23-28, 2026', 'TO YVETTE', '14:29:00', '2026-03-17', '08:11:00', 'Other documents', 'Authority to Travel', NULL, '2026-03-18 03:05:06', '2026-03-18 03:05:06'),
+(336, '2026-03-17', 'MBO', 'STATEMENT OF RECEIPTS & EXPENDITURES 2026(SORT) SEF & GENERAL FUND', 'TO YVETTE', '14:29:00', '2026-03-17', '08:11:00', 'Other documents', 'Statement of Receipts', NULL, '2026-03-18 03:06:32', '2026-03-18 03:06:32'),
+(337, '2026-03-18', 'Brgy. Mabuhay ', 'REQUEST FOR APPLICATION FOR BONDING / FIDELITY BOND', 'TO YVETTE', '09:48:00', '2026-03-18', '14:16:00', 'Other documents', 'Application Request', NULL, '2026-03-18 07:38:48', '2026-03-18 07:38:48');
 
 -- --------------------------------------------------------
 
@@ -5361,7 +5499,7 @@ INSERT IGNORE INTO `other_documents` (`id`, `date_received`, `office`, `particul
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -5369,18 +5507,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) DEFAULT NULL,
   `role` varchar(50) DEFAULT 'Staff',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  KEY `idx_username` (`username`)
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT IGNORE INTO `users` (`id`, `username`, `password`, `full_name`, `email`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$trjzlpdgxrrN58YBK4GQN.LideO00E/GjRPtdu3IsmBmPEjo5lMYG', 'System Administrator', 'admin@audit.gov', 'Administrator', '2026-03-09 01:11:01', '2026-03-09 01:11:01'),
+INSERT INTO `users` (`id`, `username`, `password`, `full_name`, `email`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '$2y$10$QmS1muyoGuzhIXZHW3GU7OKFisYcwvVxaUvI/mKbAKemTihFFqN2O', 'System Administrator', 'admin@audit.gov', 'Administrator', '2026-03-09 01:11:01', '2026-03-09 01:11:01'),
 (2, 'user', '$2y$10$/tHKhntUBLAkXtWB/tQfzOOGAybDagBMxZ3LMIG5esIjyAeVJU8MS', 'System User', 'user@audit.gov', 'Staff', '2026-03-09 01:11:01', '2026-03-09 01:11:01');
 
 --
@@ -5388,60 +5523,60 @@ INSERT IGNORE INTO `users` (`id`, `username`, `password`, `full_name`, `email`, 
 --
 
 --
--- Indexes for table `archive_documents` (included in CREATE TABLE for re-import compatibility)
+-- Indexes for table `archive_documents`
 --
--- ALTER TABLE `archive_documents`
---   ADD PRIMARY KEY (`id`),
---   ADD KEY `idx_date_received` (`date_received`),
---   ADD KEY `idx_document_type` (`document_type`),
---   ADD KEY `idx_office` (`office`),
---   ADD KEY `idx_archived_at` (`archived_at`);
+ALTER TABLE `archive_documents`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_date_received` (`date_received`),
+  ADD KEY `idx_document_type` (`document_type`),
+  ADD KEY `idx_office` (`office`),
+  ADD KEY `idx_archived_at` (`archived_at`);
 
 --
--- Indexes for table `deleted_documents` (included in CREATE TABLE for re-import compatibility)
+-- Indexes for table `deleted_documents`
 --
--- ALTER TABLE `deleted_documents`
---   ADD PRIMARY KEY (`id`),
---   ADD KEY `idx_date_received` (`date_received`),
---   ADD KEY `idx_document_type` (`document_type`),
---   ADD KEY `idx_office` (`office`),
---   ADD KEY `idx_deleted_at` (`deleted_at`);
+ALTER TABLE `deleted_documents`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_date_received` (`date_received`),
+  ADD KEY `idx_document_type` (`document_type`),
+  ADD KEY `idx_office` (`office`),
+  ADD KEY `idx_deleted_at` (`deleted_at`);
 
 --
--- Indexes for table `document_logs` (included in CREATE TABLE for re-import compatibility)
+-- Indexes for table `document_logs`
 --
--- ALTER TABLE `document_logs`
---   ADD PRIMARY KEY (`id`),
---   ADD KEY `idx_date_received` (`date_received`),
---   ADD KEY `idx_document_type` (`document_type`),
---   ADD KEY `idx_document_type_id` (`document_type_id`),
---   ADD KEY `idx_office` (`office`);
+ALTER TABLE `document_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_date_received` (`date_received`),
+  ADD KEY `idx_document_type` (`document_type`),
+  ADD KEY `idx_document_type_id` (`document_type_id`),
+  ADD KEY `idx_office` (`office`);
 
 --
--- Indexes for table `document_types` (included in CREATE TABLE for re-import compatibility)
+-- Indexes for table `document_types`
 --
--- ALTER TABLE `document_types`
---   ADD PRIMARY KEY (`id`),
---   ADD UNIQUE KEY `uniq_document_types_name` (`name`),
---   ADD KEY `idx_document_types_active` (`is_active`),
---   ADD KEY `idx_document_types_sort` (`sort_order`);
+ALTER TABLE `document_types`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uniq_document_types_name` (`name`),
+  ADD KEY `idx_document_types_active` (`is_active`),
+  ADD KEY `idx_document_types_sort` (`sort_order`);
 
 --
--- Indexes for table `other_documents` (included in CREATE TABLE for re-import compatibility)
+-- Indexes for table `other_documents`
 --
--- ALTER TABLE `other_documents`
---   ADD PRIMARY KEY (`id`),
---   ADD KEY `idx_date_received` (`date_received`),
---   ADD KEY `idx_office` (`office`),
---   ADD KEY `idx_other_document_type` (`other_document_type`);
+ALTER TABLE `other_documents`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_date_received` (`date_received`),
+  ADD KEY `idx_office` (`office`),
+  ADD KEY `idx_other_document_type` (`other_document_type`);
 
 --
--- Indexes for table `users` (included in CREATE TABLE for re-import compatibility)
+-- Indexes for table `users`
 --
--- ALTER TABLE `users`
---   ADD PRIMARY KEY (`id`),
---   ADD UNIQUE KEY `username` (`username`),
---   ADD KEY `idx_username` (`username`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `idx_username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -5463,7 +5598,7 @@ ALTER TABLE `deleted_documents`
 -- AUTO_INCREMENT for table `document_logs`
 --
 ALTER TABLE `document_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4826;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4962;
 
 --
 -- AUTO_INCREMENT for table `document_types`
@@ -5475,7 +5610,7 @@ ALTER TABLE `document_types`
 -- AUTO_INCREMENT for table `other_documents`
 --
 ALTER TABLE `other_documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=314;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -5485,8 +5620,9 @@ ALTER TABLE `users`
 --
 -- Database: `phpmyadmin`
 --
-CREATE DATABASE IF NOT EXISTS `phpmyadmin` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `phpmyadmin`;
+DROP DATABASE IF EXISTS `phpmyadmin_ias_logs`;
+CREATE DATABASE `phpmyadmin_ias_logs` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `phpmyadmin_ias_logs`;
 
 -- --------------------------------------------------------
 
@@ -5494,7 +5630,7 @@ USE `phpmyadmin`;
 -- Table structure for table `pma__bookmark`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__bookmark` (
+CREATE TABLE `pma__bookmark` (
   `id` int(10) UNSIGNED NOT NULL,
   `dbase` varchar(255) NOT NULL DEFAULT '',
   `user` varchar(255) NOT NULL DEFAULT '',
@@ -5508,7 +5644,7 @@ CREATE TABLE IF NOT EXISTS `pma__bookmark` (
 -- Table structure for table `pma__central_columns`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__central_columns` (
+CREATE TABLE `pma__central_columns` (
   `db_name` varchar(64) NOT NULL,
   `col_name` varchar(64) NOT NULL,
   `col_type` varchar(64) NOT NULL,
@@ -5525,7 +5661,7 @@ CREATE TABLE IF NOT EXISTS `pma__central_columns` (
 -- Table structure for table `pma__column_info`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__column_info` (
+CREATE TABLE `pma__column_info` (
   `id` int(5) UNSIGNED NOT NULL,
   `db_name` varchar(64) NOT NULL DEFAULT '',
   `table_name` varchar(64) NOT NULL DEFAULT '',
@@ -5544,7 +5680,7 @@ CREATE TABLE IF NOT EXISTS `pma__column_info` (
 -- Table structure for table `pma__designer_settings`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__designer_settings` (
+CREATE TABLE `pma__designer_settings` (
   `username` varchar(64) NOT NULL,
   `settings_data` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Settings related to Designer';
@@ -5555,7 +5691,7 @@ CREATE TABLE IF NOT EXISTS `pma__designer_settings` (
 -- Table structure for table `pma__export_templates`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__export_templates` (
+CREATE TABLE `pma__export_templates` (
   `id` int(5) UNSIGNED NOT NULL,
   `username` varchar(64) NOT NULL,
   `export_type` varchar(10) NOT NULL,
@@ -5569,7 +5705,7 @@ CREATE TABLE IF NOT EXISTS `pma__export_templates` (
 -- Table structure for table `pma__favorite`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__favorite` (
+CREATE TABLE `pma__favorite` (
   `username` varchar(64) NOT NULL,
   `tables` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Favorite tables';
@@ -5580,7 +5716,7 @@ CREATE TABLE IF NOT EXISTS `pma__favorite` (
 -- Table structure for table `pma__history`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__history` (
+CREATE TABLE `pma__history` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `username` varchar(64) NOT NULL DEFAULT '',
   `db` varchar(64) NOT NULL DEFAULT '',
@@ -5595,7 +5731,7 @@ CREATE TABLE IF NOT EXISTS `pma__history` (
 -- Table structure for table `pma__navigationhiding`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__navigationhiding` (
+CREATE TABLE `pma__navigationhiding` (
   `username` varchar(64) NOT NULL,
   `item_name` varchar(64) NOT NULL,
   `item_type` varchar(64) NOT NULL,
@@ -5609,7 +5745,7 @@ CREATE TABLE IF NOT EXISTS `pma__navigationhiding` (
 -- Table structure for table `pma__pdf_pages`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__pdf_pages` (
+CREATE TABLE `pma__pdf_pages` (
   `db_name` varchar(64) NOT NULL DEFAULT '',
   `page_nr` int(10) UNSIGNED NOT NULL,
   `page_descr` varchar(50) NOT NULL DEFAULT ''
@@ -5621,7 +5757,7 @@ CREATE TABLE IF NOT EXISTS `pma__pdf_pages` (
 -- Table structure for table `pma__recent`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__recent` (
+CREATE TABLE `pma__recent` (
   `username` varchar(64) NOT NULL,
   `tables` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Recently accessed tables';
@@ -5632,7 +5768,7 @@ CREATE TABLE IF NOT EXISTS `pma__recent` (
 -- Table structure for table `pma__relation`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__relation` (
+CREATE TABLE `pma__relation` (
   `master_db` varchar(64) NOT NULL DEFAULT '',
   `master_table` varchar(64) NOT NULL DEFAULT '',
   `master_field` varchar(64) NOT NULL DEFAULT '',
@@ -5647,7 +5783,7 @@ CREATE TABLE IF NOT EXISTS `pma__relation` (
 -- Table structure for table `pma__savedsearches`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__savedsearches` (
+CREATE TABLE `pma__savedsearches` (
   `id` int(5) UNSIGNED NOT NULL,
   `username` varchar(64) NOT NULL DEFAULT '',
   `db_name` varchar(64) NOT NULL DEFAULT '',
@@ -5661,7 +5797,7 @@ CREATE TABLE IF NOT EXISTS `pma__savedsearches` (
 -- Table structure for table `pma__table_coords`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__table_coords` (
+CREATE TABLE `pma__table_coords` (
   `db_name` varchar(64) NOT NULL DEFAULT '',
   `table_name` varchar(64) NOT NULL DEFAULT '',
   `pdf_page_number` int(11) NOT NULL DEFAULT 0,
@@ -5675,7 +5811,7 @@ CREATE TABLE IF NOT EXISTS `pma__table_coords` (
 -- Table structure for table `pma__table_info`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__table_info` (
+CREATE TABLE `pma__table_info` (
   `db_name` varchar(64) NOT NULL DEFAULT '',
   `table_name` varchar(64) NOT NULL DEFAULT '',
   `display_field` varchar(64) NOT NULL DEFAULT ''
@@ -5687,7 +5823,7 @@ CREATE TABLE IF NOT EXISTS `pma__table_info` (
 -- Table structure for table `pma__table_uiprefs`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__table_uiprefs` (
+CREATE TABLE `pma__table_uiprefs` (
   `username` varchar(64) NOT NULL,
   `db_name` varchar(64) NOT NULL,
   `table_name` varchar(64) NOT NULL,
@@ -5701,7 +5837,7 @@ CREATE TABLE IF NOT EXISTS `pma__table_uiprefs` (
 -- Table structure for table `pma__tracking`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__tracking` (
+CREATE TABLE `pma__tracking` (
   `db_name` varchar(64) NOT NULL,
   `table_name` varchar(64) NOT NULL,
   `version` int(10) UNSIGNED NOT NULL,
@@ -5720,7 +5856,7 @@ CREATE TABLE IF NOT EXISTS `pma__tracking` (
 -- Table structure for table `pma__userconfig`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__userconfig` (
+CREATE TABLE `pma__userconfig` (
   `username` varchar(64) NOT NULL,
   `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `config_data` text NOT NULL
@@ -5730,7 +5866,7 @@ CREATE TABLE IF NOT EXISTS `pma__userconfig` (
 -- Dumping data for table `pma__userconfig`
 --
 
-INSERT IGNORE INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
+INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
 ('root', '2026-03-12 10:28:40', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"en_GB\"}');
 
 -- --------------------------------------------------------
@@ -5739,7 +5875,7 @@ INSERT IGNORE INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VA
 -- Table structure for table `pma__usergroups`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__usergroups` (
+CREATE TABLE `pma__usergroups` (
   `usergroup` varchar(64) NOT NULL,
   `tab` varchar(64) NOT NULL,
   `allowed` enum('Y','N') NOT NULL DEFAULT 'N'
@@ -5751,7 +5887,7 @@ CREATE TABLE IF NOT EXISTS `pma__usergroups` (
 -- Table structure for table `pma__users`
 --
 
-CREATE TABLE IF NOT EXISTS `pma__users` (
+CREATE TABLE `pma__users` (
   `username` varchar(64) NOT NULL,
   `usergroup` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Users and their assignments to user groups';
@@ -5761,27 +5897,124 @@ CREATE TABLE IF NOT EXISTS `pma__users` (
 --
 
 --
--- Indexes for pma__ tables (commented out for re-import compatibility; add in CREATE if needed for fresh install)
+-- Indexes for table `pma__bookmark`
 --
--- ALTER TABLE `pma__bookmark` ADD PRIMARY KEY (`id`);
--- ALTER TABLE `pma__central_columns` ADD PRIMARY KEY (`db_name`,`col_name`);
--- ALTER TABLE `pma__column_info` ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
--- ALTER TABLE `pma__designer_settings` ADD PRIMARY KEY (`username`);
--- ALTER TABLE `pma__export_templates` ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
--- ALTER TABLE `pma__favorite` ADD PRIMARY KEY (`username`);
--- ALTER TABLE `pma__history` ADD PRIMARY KEY (`id`), ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
--- ALTER TABLE `pma__navigationhiding` ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
--- ALTER TABLE `pma__pdf_pages` ADD PRIMARY KEY (`page_nr`), ADD KEY `db_name` (`db_name`);
--- ALTER TABLE `pma__recent` ADD PRIMARY KEY (`username`);
--- ALTER TABLE `pma__relation` ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`), ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
--- ALTER TABLE `pma__savedsearches` ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
--- ALTER TABLE `pma__table_coords` ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
--- ALTER TABLE `pma__table_info` ADD PRIMARY KEY (`db_name`,`table_name`);
--- ALTER TABLE `pma__table_uiprefs` ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
--- ALTER TABLE `pma__tracking` ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
--- ALTER TABLE `pma__userconfig` ADD PRIMARY KEY (`username`);
--- ALTER TABLE `pma__usergroups` ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
--- ALTER TABLE `pma__users` ADD PRIMARY KEY (`username`,`usergroup`);
+ALTER TABLE `pma__bookmark`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pma__central_columns`
+--
+ALTER TABLE `pma__central_columns`
+  ADD PRIMARY KEY (`db_name`,`col_name`);
+
+--
+-- Indexes for table `pma__column_info`
+--
+ALTER TABLE `pma__column_info`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
+
+--
+-- Indexes for table `pma__designer_settings`
+--
+ALTER TABLE `pma__designer_settings`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `pma__export_templates`
+--
+ALTER TABLE `pma__export_templates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
+
+--
+-- Indexes for table `pma__favorite`
+--
+ALTER TABLE `pma__favorite`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `pma__history`
+--
+ALTER TABLE `pma__history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
+
+--
+-- Indexes for table `pma__navigationhiding`
+--
+ALTER TABLE `pma__navigationhiding`
+  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
+
+--
+-- Indexes for table `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  ADD PRIMARY KEY (`page_nr`),
+  ADD KEY `db_name` (`db_name`);
+
+--
+-- Indexes for table `pma__recent`
+--
+ALTER TABLE `pma__recent`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `pma__relation`
+--
+ALTER TABLE `pma__relation`
+  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
+  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
+
+--
+-- Indexes for table `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
+
+--
+-- Indexes for table `pma__table_coords`
+--
+ALTER TABLE `pma__table_coords`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
+
+--
+-- Indexes for table `pma__table_info`
+--
+ALTER TABLE `pma__table_info`
+  ADD PRIMARY KEY (`db_name`,`table_name`);
+
+--
+-- Indexes for table `pma__table_uiprefs`
+--
+ALTER TABLE `pma__table_uiprefs`
+  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
+
+--
+-- Indexes for table `pma__tracking`
+--
+ALTER TABLE `pma__tracking`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
+
+--
+-- Indexes for table `pma__userconfig`
+--
+ALTER TABLE `pma__userconfig`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `pma__usergroups`
+--
+ALTER TABLE `pma__usergroups`
+  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
+
+--
+-- Indexes for table `pma__users`
+--
+ALTER TABLE `pma__users`
+  ADD PRIMARY KEY (`username`,`usergroup`);
 
 --
 -- AUTO_INCREMENT for dumped tables

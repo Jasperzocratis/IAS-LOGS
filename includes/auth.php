@@ -20,11 +20,32 @@ function isLoggedIn() {
 }
 
 /**
+ * Check if current user is admin
+ * @return bool
+ */
+function isAdmin() {
+    $role = strtolower(trim((string)($_SESSION['role'] ?? '')));
+    $username = strtolower(trim((string)($_SESSION['username'] ?? '')));
+    return $role === 'administrator' || $role === 'admin' || $username === 'admin';
+}
+
+/**
  * Require user to be logged in, redirect to login if not
  */
 function requireLogin() {
     if (!isLoggedIn()) {
         header("Location: ../login.php");
+        exit;
+    }
+
+    // Admin UI is view/report-only; block access to document management pages.
+    $path = $_SERVER['PHP_SELF'] ?? '';
+    if (isAdmin() && strpos($path, '/documents/') !== false) {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['error'] = "Admin account is view-only and cannot access Document Logbook pages.";
+        header("Location: ../index.php");
         exit;
     }
 }

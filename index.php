@@ -21,6 +21,7 @@ if (!isLoggedIn()) {
 
 // Get database connection
 $pdo = getDBConnection();
+$is_admin = function_exists('isAdmin') ? isAdmin() : false;
 
 // Dashboard stats and recent docs — load each table separately so one broken table (e.g. missing tablespace) doesn't break the whole page
 $error = null;
@@ -181,7 +182,14 @@ if (!empty($broken_tables)) {
                     <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
                 <?php endif; ?>
                 <?php if (!empty($table_warning)): ?>
-                    <div class="alert alert-warning"><?php echo htmlspecialchars($table_warning); ?></div>
+                    <div class="alert alert-warning">
+                        <?php echo htmlspecialchars($table_warning); ?>
+                        <?php if (in_array('archive_documents', $broken_tables, true)): ?>
+                            <div class="mt-3">
+                                <a href="documents/repair_archive.php" class="btn btn-sm" style="background: #D4AF37; color: #000; border: 2px solid #B8941F; font-weight: 600;">Proceed to repair archive table</a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 <?php endif; ?>
                 
                 <!-- Statistics Cards -->
@@ -257,6 +265,7 @@ if (!empty($broken_tables)) {
                 </div>
 
                 <!-- Quick Actions -->
+                <?php if (!$is_admin): ?>
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="main-content-card">
@@ -269,6 +278,7 @@ if (!empty($broken_tables)) {
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
 
                 <!-- Recent Documents -->
                 <div class="row">
